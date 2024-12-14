@@ -33,3 +33,9 @@ Para terminar, se ha representado la variabilidad del rating para una misma cate
 <img src="https://github.com/user-attachments/assets/1bc6c553-c4a1-453d-8dbb-f646e7d70dee" alt="imagen" width="400">
 
 <img src="https://github.com/user-attachments/assets/88d30f85-e16b-44c6-a430-789867fd2f38" alt="imagen" width="400">
+
+Se representan también los diagramas para 10 categorías que tienen ratings entre 1 y 2 y otras 10 categorías cuyos ratings están entre 4 y 5.
+
+<img src="https://github.com/user-attachments/assets/c28114a1-e655-4e7c-8ea1-749256c75289" alt="imagen" width="400">
+
+<img src="https://github.com/user-attachments/assets/122aa4ec-702c-4bf1-ac86-ffe0d3eb59ff" alt="imagen" width="400">
