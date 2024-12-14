@@ -34,8 +34,11 @@ Para terminar, se ha representado la variabilidad del rating para una misma cate
 
 <img src="https://github.com/user-attachments/assets/88d30f85-e16b-44c6-a430-789867fd2f38" alt="imagen" width="400">
 
-Se representan también los diagramas para 10 categorías que tienen ratings entre 1 y 2 y otras 10 categorías cuyos ratings están entre 4 y 5.
+Se representan también los diagramas para 10 categorías que tienen ratings entre 1 y 2 y otras 10 categorías cuyos ratings están entre 4 y 5. De estos diagramas se llega a la conclusión de que las categorías que presentan valores más altos de rating presentan una menor variabilidad que aquellas que tienen valores de rating más bajos. 
 
 <img src="https://github.com/user-attachments/assets/c28114a1-e655-4e7c-8ea1-749256c75289" alt="imagen" width="400">
 
 <img src="https://github.com/user-attachments/assets/122aa4ec-702c-4bf1-ac86-ffe0d3eb59ff" alt="imagen" width="400">
+
+
+## 2. Preprocesado
