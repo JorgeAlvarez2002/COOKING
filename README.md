@@ -16,6 +16,15 @@ Como primer análisis de los datos, se propone la visualización de las 10 categ
 
 Como se puede observar, son 9 las categorías con el valor de rating máximo (rating=5).
 
-Con el objetivo de entontrar la relación entre las categorías de las distintas recetas y sus correpondientes ratings, se calcula la correlación de cada categoría, obteniendo valores ínfimos. Esto nos indica la débil relación entre ambas variables, por lo que buscamos otro análisis distinto.
+Con el objetivo de entontrar la relación entre las categorías de las distintas recetas y sus correpondientes ratings, se calcula la correlación de cada categoría, obteniendo valores ínfimos. Esto nos indica la débil relación entre ambas variables, por lo que se busca otro análisis distinto.
 
 <img src="https://github.com/user-attachments/assets/b074c1e1-f46b-4100-8369-d598b579bb46" alt="imagen" width="200">
+
+A continuación, se ha analizado la frecuencia de aparición de las categorías a lo largo de las distintas recetas. En este caso, se han representado dos histogramas en los cuales se muestra la frecuencia de aparición de las 15 categorías con los ratings más altos y más bajos, respectivamente.
+
+<img src="https://github.com/user-attachments/assets/c6e14627-d90f-40cd-bb21-868187bf4c03" alt="imagen" width="400">
+
+<img src="https://github.com/user-attachments/assets/8066f13a-c486-4098-9d5b-0c69efe18de0" alt="imagen" width="400">
+
+
+De esta forma, se observa
