@@ -38,7 +38,13 @@ Se representan también los diagramas para 10 categorías que tienen ratings ent
 
 <img src="https://github.com/user-attachments/assets/c28114a1-e655-4e7c-8ea1-749256c75289" alt="imagen" width="400">
 
-<img src="https://github.com/user-attachments/assets/122aa4ec-702c-4bf1-ac86-ffe0d3eb59ff" alt="imagen" width="400">
+<img src="https://github.com/user-attachments/assets/5bef85cf-d4d1-4c89-8593-62ff1434feca" alt="imagen" width="400">
 
 
 ## 2. Preprocesado
+A continuación, se aplica un preprocesado a los datos de entrada con el objetivo de optimizar los resultados obtenidos en el cálculo de los embeddings y el entrenamiento y la evaluación posterior.
+
+### 2.1. Text Wrangling
+### 2.2. Tokenización
+### 2.3. Homogenización
+### 2.4. Limpieza
