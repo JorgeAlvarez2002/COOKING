@@ -26,5 +26,10 @@ A continuación, se ha analizado la frecuencia de aparición de las categorías 
 
 <img src="https://github.com/user-attachments/assets/8066f13a-c486-4098-9d5b-0c69efe18de0" alt="imagen" width="400">
 
+De esta forma, se observa que, de forma general, las categorías que mayor rating presentan son aquellas que aparecen con menos frecuencia. Esto podría indicar que las recetas más raras son las mejores puntuadas por lso usuarios, mientras que las más comunes reciben peores valoraciones.
 
-De esta forma, se observa
+Para terminar, se ha representado la variabilidad del rating para una misma categoría. Esto se ha realizado en primer lugar para las 10 categorías más frecuentes así como para las 10 categorías menos frecuentes. La representación utilizada ha sido el diagrama de caja y bigotes:
+
+<img src="https://github.com/user-attachments/assets/1bc6c553-c4a1-453d-8dbb-f646e7d70dee" alt="imagen" width="400">
+
+<img src="https://github.com/user-attachments/assets/88d30f85-e16b-44c6-a430-789867fd2f38" alt="imagen" width="400">
