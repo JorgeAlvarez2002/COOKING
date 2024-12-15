@@ -46,7 +46,7 @@ A continuación, se aplica un preprocesado a los datos de entrada (variables _di
 
 Los textos originales son los siguientes:
 
-<img src="https://github.com/user-attachments/assets/a3e05c58-bfb0-49b5-8a30-4ddd6128575b" alt="imagen" width="400">
+<img src="https://github.com/user-attachments/assets/fe97a93b-930a-4955-92a5-e1f71bd3a9ff" alt="imagen" width="400">
 
 ### 2.1. _Wrangling_
 En este primer paso, se eliminan caracteres del texto que no son relevantes semánticamente, como signos de puntuación y números. En este caso, se ha elegido eliminar comas (**,**), guiones (**-**), puntos (**.**) y números. 
