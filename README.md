@@ -94,7 +94,6 @@ Se puede observar que las dimesiones de la matriz son 20130x3924, correpondiente
 
 ### 3.1. Word2Vec
 
-
 Se han realizado distintos análisis a partir de los embeddings extraídos con Word2Vec. En primer lugar, se ha realizado una reducción de la dimensionalidad de los datos y se han representado, obteniendo la siguiente figura:
 
 <img src="https://github.com/user-attachments/assets/032a09d2-4327-4a58-8aeb-6f060b816f89" alt="imagen" width="700">
@@ -112,6 +111,13 @@ Por último, se ha calculado la similitud coseno entre recetas a partir de los _
 <img src="https://github.com/user-attachments/assets/44627365-4ea8-46f4-9184-be13ca234709" alt="imagen" width="800">
 
 <img src="" alt="imagen" width="400">
+
+
 ### 3.1. Embeddings contextuales: BERT
+Por último, se han vectorizado las características correpondientes a la variable _directions_ a través del modelo basado en transformers BERT.
+
+## 4. Entrenamiento y evaluación
+### 4.1. Redes neuronales con PyTorch
 
 
+## 5. Comparación de lo obtenido con el _fine-tuning_ de un modelo preentrenado con _Hugging Face_
