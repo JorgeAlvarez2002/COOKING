@@ -132,7 +132,7 @@ Estos modelos de regresión, Random Forest y kNN, se entrenarán con las tres re
 #### 4.1.1 TF-IDF
 ##### 4.1.1.1 Random Forest
 
-En un primer intento de aplicar el regresor random Forest en el notebook "RandomForest-TF-IDF_1.ipynb"con 50 árboles de decisión; para preparar los datos de entrenamiento y test se decide rellenar los datos faltantes del rating con la media, que es una técnica habitual. Se selecciona un subconjunto más pequeño de las muestras de entrenamiento. 1000 recetas se utilizan para entrenar el modelo, lo que es útil cuando se quiere acelerar el proceso de entrenamiento ya que los recursos computacionales son limitados.
+En un primer intento de aplicar el regresor random Forest en el notebook "RandomForest-TF-IDF_1.ipynb" con 50 árboles de decisión; para preparar los datos de entrenamiento y test se decide rellenar los datos faltantes del rating con la media, que es una técnica habitual. Se selecciona un subconjunto más pequeño de las muestras de entrenamiento. 1000 recetas se utilizan para entrenar el modelo, lo que es útil cuando se quiere acelerar el proceso de entrenamiento ya que los recursos computacionales son limitados.
 
 La matriz TF-IDF es costosa computacionalmente para un regresor como Random FOrest por lo que se decide reducir dimensionalidad para entrenar el modelo. Se utiliza el método SelectKbest con f_regression que selecciona las mejores características del conjunto de datos basado en un test estadístico que mide la relación entre las características y el target (rating). Se ha establecido que el número de componentes a conservar es 500. Este número fue elegido principalmente por razones de eficiencia computacional. Reducir la dimensionalidad ayuda a que el modelo cargue más rápido y se entrene de manera más eficiente. Además al usar todas las características se observa una ligera empeora del MSE por lo que se puede asegurar que hay muchas componentes ruidosas.
 
@@ -156,7 +156,7 @@ Este análisis se confirma si se observa como se distribuyen las predicciones vs
 
 <img src="https://github.com/user-attachments/assets/b6e2adbb-a0ca-44c0-8672-87e365930b91" alt="imagen" width="600">
 
-Para mejorar el rendimiento del modelo RandomForestRegressor, hemos implementado una búsqueda exhaustiva de hiperparámetros utilizando GridSearchCV. Este proceso permite probar diferentes combinaciones de parámetros y seleccionar los que mejor optimicen la puntuación de validación cruzada (medida de rendimiento general del modelo). La búsqueda de hiperparámetros se realizó utilizando un conjunto de entrenamiento reducido (1000 recetas).
+Para mejorar el rendimiento del modelo RandomForestRegressor en "RandomForest-TF-IDF_2.ipynb", se implementa una búsqueda exhaustiva de hiperparámetros utilizando GridSearchCV. Este proceso permite probar diferentes combinaciones de parámetros y seleccionar los que mejor optimicen la puntuación de validación cruzada (medida de rendimiento general del modelo). La búsqueda de hiperparámetros se realizó utilizando un conjunto de entrenamiento reducido (1000 recetas).
 
  Se probaron 50, 100 y 150 árboles de decisión, se probaron distintas profundidades de 10, 20, 30 y none. También se probó el número mínimo de muestras requerido para dividir un nodo. Se probaron 2, 5 y 10 muestras. Tras ejecutar GridSearchCV con una validación cruzada de 3 pliegues (cv=3), los mejores parámetros encontrados fueron los siguientes:
 
@@ -178,9 +178,31 @@ Con la gráfica de la curva de aprendizaje que se genera, se observa que el MSE 
 
 <img src="https://github.com/user-attachments/assets/c6d3e36f-711d-4b43-801e-1be2c48513bd" alt="imagen" width="600">
 
-Este análisis permite ver que aunque aumentes el tamaño del conjunto de entrenamiento, el modelo aún no ha logrado reducir suficientemente el MSE en el conjunto de prueba ni de entrenamiento.
+Este análisis permite ver que aunque aumentes el tamaño del conjunto de entrenamiento, el modelo aún no ha logrado reducir suficientemente el MSE en el conjunto de prueba ni de entrenamiento. Si a continuación se observa el histograma que compara las predicciones vs valores reales para el mejor modelo obtenido tras el estudio previo de hiperparámetros se observa un ligero mejor ajuste de las predicciones:
+
+<img src="https://github.com/user-attachments/assets/d1dfba4f-522e-4abe-8e2a-fddeffc0be66" width="425" alt="image">
 
 ##### 4.1.1.2 kNN
+
+Al observar los resultados obtenidos de Random Forest, como el MSE alto tanto en el conjunto de entrenamiento como en el de prueba (en particular, el MSE de prueba no mejora significativamente con el tamaño del conjunto de entrenamiento), es claro que el modelo no está capturando bien las relaciones subyacentes entre las características y la variable objetivo. A pesar de los esfuerzos por optimizar los hiperparámetros (a través de GridSearchCV), el modelo sigue mostrando un rendimiento limitado. Este comportamiento puede indicar que Random Forest no es adecuado para la naturaleza de los datos en cuestión, o que las características seleccionadas no son las más representativas. Se decide probar con el regresor kNN que es un modelo no paramétrico que no hace suposiciones sobre la forma de la relación entre las características y la variable objetivo. A diferencia de Random Forest, que intenta aprender patrones complejos mediante árboles de decisión, kNN utiliza una metodología simple basada en la proximidad de los puntos de datos, lo que puede ser útil cuando los datos tienen una estructura no tan compleja.
+
+Como kNN es menos exigente computacionalmente utilizamos las 1000 características más representativas por cada receta según kBest y se utiliza el total de todas las recetas. El siguiente gráfico muestra el comportamiento del Error Cuadrático Medio (MSE) en función del número de vecinos k en el algoritmo kNN. El MSE disminuye drásticamente cuando el número de vecinos (k) se incrementa desde valores bajos hasta un punto donde se estabiliza, lo que indica que kNN se vuelve más estable a medida que se promedia sobre más vecinos.
+
+<img src="https://github.com/user-attachments/assets/1d4c4b54-b36d-4dcf-8529-781c23ac1082" width="418" alt="image">
+
+Como un k muy alto puede llevar a subajuste (underfitting), ya que el modelo sería demasiado simple y no capturaría las relaciones locales de los datos.Se llega al compromiso de elegir como k óptimo=20, aunque se obtiene un peor resultado de MSE que con random Forest.
+
+<img src="https://github.com/user-attachments/assets/c94aa9dc-95b7-4626-9035-9fc6bb225834" width="185" alt="image">
+
+En la representación de valor real vs predicción se puede llegar a la misma conclusión que con random forest y los valores que mejor se predicen son el rating 3.5 y 4.
+
+Sobre la curva de aprendizaje se pueden hacer comentarios interesantes:
+
+El puntaje del conjunto de entrenamiento que oscila alrededor de 0.3 indica que el modelo no logra ajustar completamente los datos de entrenamiento. Esto puede sugerir un subajuste (underfitting), donde el modelo no es lo suficientemente complejo para capturar las relaciones entre las características y la variable objetivo.
+Que el puntaje de prueba comience en -0.1 es preocupante porque sugiere que el modelo inicial tiene un rendimiento muy bajo, posiblemente peor que un modelo ingenuo.
+
+<img src="https://github.com/user-attachments/assets/90a1c929-5b30-49e7-b33c-3a325460335c" width="374" alt="image" >
+
 
 
 #### 4.1.2 Word2vec
