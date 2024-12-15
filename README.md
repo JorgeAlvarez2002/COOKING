@@ -160,7 +160,7 @@ Para mejorar el rendimiento del modelo RandomForestRegressor, hemos implementado
 
  Se probaron 50, 100 y 150 árboles de decisión, se probaron distintas profundidades de 10, 20, 30 y none. También se probó el número mínimo de muestras requerido para dividir un nodo. Se probaron 2, 5 y 10 muestras. Tras ejecutar GridSearchCV con una validación cruzada de 3 pliegues (cv=3), los mejores parámetros encontrados fueron los siguientes:
 
- <img src="https://github.com/user-attachments/assets/bc61e60b-03cd-43ca-8d59-ae4aa22bf8ed" lt="imagen" width="400">
+ <img src="https://github.com/user-attachments/assets/bc61e60b-03cd-43ca-8d59-ae4aa22bf8ed" alt="imagen" width="400">
 
 La mejor puntuación de validación cruzada obtenida fue 0.0822, lo que indica que el modelo optimizado tiene un rendimiento moderado en términos de la varianza explicada durante la validación cruzada. Aunque este valor no es alto, refleja un modelo que generaliza razonablemente bien.
 
@@ -173,6 +173,13 @@ Aunque n_estimators=150 podría ofrecer más árboles, esto no necesariamente me
 ![image](https://github.com/user-attachments/assets/874701e6-7aed-4546-8a24-7163be73bc5a)
 
 En conclusión, este comportamiento de empeoramiento del MSE podría indicar que el modelo está empezando a sobreajustarse al conjunto de entrenamiento a medida que aumentas el tamaño de los datos.
+
+Con la gráfica de la curva de aprendizaje que se genera, se observa que el MSE de entrenamiento disminuye conforme aumenta el tamaño del conjunto de entrenamiento. Sin embargo, este no llega a a acercarse a un valor muy bajo lo cual podría indicar que la capacidad del modelo es limitada.
+
+<img src="https://github.com/user-attachments/assets/c6d3e36f-711d-4b43-801e-1be2c48513bd" alt="imagen" width="600">
+
+Este análisis permite ver que aunque aumentes el tamaño del conjunto de entrenamiento, el modelo aún no ha logrado reducir suficientemente el MSE en el conjunto de prueba ni de entrenamiento.
+
 ##### 4.1.1.2 kNN
 
 
