@@ -130,6 +130,22 @@ En este punto del proyecto, nos enfocamos en el entrenamiento y evaluación de m
 
 Estos modelos de regresión, Random Forest y kNN, se entrenarán con las tres representaciones mencionadas para evaluar su rendimiento en la predicción de las valoraciones de recetas. A través de esta experimentación, buscaremos identificar qué tipo de representación vectorial y qué modelo ofrecen un mejor rendimiento en esta tarea de regresión.
 #### 4.1.1 TF-IDF
+##### 4.1.1.1 Random Forest
+
+En un primer intento de aplicar el regresor random Forest en el notebook "RandomForest-TF-IDF_1.ipynb" para preparar los datos de entrenamiento y test se decide rellenar los datos faltantes del rating con la media, que es una técnica habitual. Se selecciona un subconjunto más pequeño de las muestras de entrenamiento. 1000 recetas se utilizan para entrenar el modelo, lo que es útil cuando se quiere acelerar el proceso de entrenamiento ya que los recursos computacionales son limitados.
+
+La matriz TF-IDF es costosa computacionalmente para un regresor como Random FOrest por lo que se decide reducir dimensionalidad para entrenar el modelo. Se utiliza el método SelectKbest con f_regression que selecciona las mejores características del conjunto de datos basado en un test estadístico que mide la relación entre las características y el target (rating). Se ha establecido que el número de componentes a conservar es 500. Este número fue elegido principalmente por razones de eficiencia computacional. Reducir la dimensionalidad ayuda a que el modelo cargue más rápido y se entrene de manera más eficiente. Además al usar todas las características se observa una ligera empeora del MSE por lo que se puede asegurar que hay muchas componentes ruidosas.
+
+Para justificar este primer analisis se utilizan componentes escogidas aleatoriamente y a través del método SelectKbest obteniendose los siguientes resultados:
+
+
+Los resultados evidencian que SelectKBest mejora el desempeño del modelo, al elegir características que tienen una mayor correlación con la variable objetivo, en comparación con la selección aleatoria de características. Esto refuerza la idea de que, en problemas supervisados (predicción del rating de recetas), es más efectivo utilizar técnicas de selección de características que consideren la relación con el target, como SelectKBest, en lugar de una selección aleatoria que no aprovecha esa información.
+<img width="143" alt="image" src="https://github.com/user-attachments/assets/5010445f-9505-4778-900e-195b15938865" alt="imagen" width="800">
+
+Este análisis permite argumentar que la reducción de dimensionalidad supervisada (como SelectKBest) proporciona mejores resultados que una reducción aleatoria de características.
+
+##### 4.1.1.2 kNN
+
 
 #### 4.1.2 Word2vec
 
