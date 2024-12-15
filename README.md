@@ -90,7 +90,7 @@ De esta forma, se obteniene una matriz que tiene la siguiente forma:
 
 Se puede observar que las dimesiones de la matriz son 20130x3924, correpondientes a las 20130 recetas y las 3924 palabras únicas que forman el vocabulario de las recetas. En la parte izquierda se muestran las "coordenadas" de cada palabra y a la derecha el peso TF-IDF asociado a esa palabra.
 
-<img src="" alt="imagen" width="400">
+
 
 ### 3.1. Word2Vec
 
@@ -106,8 +106,12 @@ Por otro lado y siguiendo con la característica observada anteriormente, buscam
 
 <img src="https://github.com/user-attachments/assets/4e4e0ae5-826d-4734-8b0a-e693755d931b" alt="imagen" width="200">
 
+Por último, se ha calculado la similitud coseno entre recetas a partir de los _embeddings_ extraídos. Esto se ha realizado para las 10 primeras recetas, comparándolas de 2 en 2 (la primera con la segunda, la tercera con la cuarta...):
+
+<img src="https://github.com/user-attachments/assets/80080646-f6d1-4e31-8026-d1aa9a36f9ca" alt="imagen" width="400">
 
 
+<img src="" alt="imagen" width="400">
 ### 3.1. Embeddings contextuales: BERT
 
 
