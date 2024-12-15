@@ -132,18 +132,29 @@ Estos modelos de regresión, Random Forest y kNN, se entrenarán con las tres re
 #### 4.1.1 TF-IDF
 ##### 4.1.1.1 Random Forest
 
-En un primer intento de aplicar el regresor random Forest en el notebook "RandomForest-TF-IDF_1.ipynb" para preparar los datos de entrenamiento y test se decide rellenar los datos faltantes del rating con la media, que es una técnica habitual. Se selecciona un subconjunto más pequeño de las muestras de entrenamiento. 1000 recetas se utilizan para entrenar el modelo, lo que es útil cuando se quiere acelerar el proceso de entrenamiento ya que los recursos computacionales son limitados.
+En un primer intento de aplicar el regresor random Forest en el notebook "RandomForest-TF-IDF_1.ipynb"con 50 árboles de decisión; para preparar los datos de entrenamiento y test se decide rellenar los datos faltantes del rating con la media, que es una técnica habitual. Se selecciona un subconjunto más pequeño de las muestras de entrenamiento. 1000 recetas se utilizan para entrenar el modelo, lo que es útil cuando se quiere acelerar el proceso de entrenamiento ya que los recursos computacionales son limitados.
 
 La matriz TF-IDF es costosa computacionalmente para un regresor como Random FOrest por lo que se decide reducir dimensionalidad para entrenar el modelo. Se utiliza el método SelectKbest con f_regression que selecciona las mejores características del conjunto de datos basado en un test estadístico que mide la relación entre las características y el target (rating). Se ha establecido que el número de componentes a conservar es 500. Este número fue elegido principalmente por razones de eficiencia computacional. Reducir la dimensionalidad ayuda a que el modelo cargue más rápido y se entrene de manera más eficiente. Además al usar todas las características se observa una ligera empeora del MSE por lo que se puede asegurar que hay muchas componentes ruidosas.
 
 Para justificar este primer analisis se utilizan componentes escogidas aleatoriamente y a través del método SelectKbest obteniendose los siguientes resultados:
 
-
 Los resultados evidencian que SelectKBest mejora el desempeño del modelo, al elegir características que tienen una mayor correlación con la variable objetivo, en comparación con la selección aleatoria de características. Esto refuerza la idea de que, en problemas supervisados (predicción del rating de recetas), es más efectivo utilizar técnicas de selección de características que consideren la relación con el target, como SelectKBest, en lugar de una selección aleatoria que no aprovecha esa información.
 
 <img src="https://github.com/user-attachments/assets/5010445f-9505-4778-900e-195b15938865" alt="imagen" width="400">
 
-Este análisis permite argumentar que la reducción de dimensionalidad supervisada (como SelectKBest) proporciona mejores resultados que una reducción aleatoria de características.
+Este análisis permite argumentar que la reducción de dimensionalidad supervisada (como SelectKBest) proporciona mejores resultados que una reducción aleatoria de características. Con el uso de validación cruzada, se ha obtenido una evaluación más precisa del rendimiento del modelo, con un MSE de 1.4202, que es ligeramente mejor que los resultados iniciales obtenidos con SelectKBest sin validación cruzada. Esto valida la robustez de tu modelo y asegura que la selección de características es adecuada para predecir el rating de las recetas.
+
+El modelo ha identificado ciertas palabras clave que impactan las calificaciones de las recetas, pero es importante reconocer que el modelo no entiende el significado semántico de las palabras, sino que simplemente las evalúa por su capacidad para predecir la variable objetivo (rating). Además, al ser un modelo no lineal como Random Forest, las características con mayor importancia no siempre corresponden a las palabras que intuitivamente pensaríamos que deberían tener más peso en el contexto de una receta.
+
+<img src="https://github.com/user-attachments/assets/cd20ad70-1bc2-4eda-bea6-1099e468e983" alt="imagen" width="800">
+
+Se realiza también un análisis de los valores predichos vs reales, donde las predicciones si fueran perfectas se colocarían sobre la línea roja. Los malos resultados se asocian a los ratings se distribuyeb de manera no uniforme como observaremos más abajo, hay muchas recetas que poseen un rating de 3.5 y 4.5 y por ello el modelo encuentra las mayores dificultades para predecir ratings extremos (0 o 5):
+
+<img src="https://github.com/user-attachments/assets/754d0419-d1f0-4785-88f1-fd81d612c40f" alt="imagen" width="800">
+ 
+Este análisis se confirma si se observa como se distribuyen las predicciones vs los valores reales:
+
+<img src="https://github.com/user-attachments/assets/b6e2adbb-a0ca-44c0-8672-87e365930b91" alt="imagen" width="800">
 
 ##### 4.1.1.2 kNN
 
