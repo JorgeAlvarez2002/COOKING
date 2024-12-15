@@ -44,7 +44,7 @@ Se representan también los diagramas para 10 categorías que tienen ratings ent
 ## 2. Preprocesado
 A continuación, se aplica un preprocesado a los datos de entrada con el objetivo de optimizar los resultados obtenidos en el cálculo de los embeddings y el entrenamiento y la evaluación posterior.
 
-### 2.1. Text Wrangling
+### 2.1. Wrangling
 ### 2.2. Tokenización
 ### 2.3. Homogenización
 ### 2.4. Limpieza
