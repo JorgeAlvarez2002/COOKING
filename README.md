@@ -65,7 +65,6 @@ Una vez se ha separado el texto en _tokens_, antes de aplicar la homogenización
 
 <img src="https://github.com/user-attachments/assets/bd55c717-13bd-4220-a309-ce125a5ef7fa" alt="imagen" width="400">
 
-<img src="" alt="imagen" width="400">
 
 ### 2.3. Homogenización
 Con la homogenización se busca que todas las palabras con significados equivalentes se representen de una única forma de forma que el tamaño del vocabulario se vea reducido. Esto hará que a la hora de representar los _embeddings_, estos tengan dimensiones menores y en consecuencia se mejore el rendimiento del modelo. En clase se han trabajado dos técnicas, que son la lematización y _stemming_. En este caso se ha elegido la lematización por su mayor precisión, ya que las palabras se reducen a su forma base en lugar de a la palabra raíz más básica, como ocurre en _stemming_.
@@ -83,13 +82,25 @@ Por último, se procede a la eliminación de aquellas palabras que son muy comun
 A continuación, se va a realizar la vectorización de la  variable _directions_, con la que se trabajará en el resto del proyecto.
 
 ### 3.1. TF-IDF
-En este tipo de vectorización, se asignan valores más altos a aquellos términos que son muy frecuentes en un documento en particular y muy poco en otros documentos. De esta forma, se penaliza a las palabras que aparecen en muchos documentos, lo cual ocurre con las palabras básicas.
+En este tipo de vectorización, se asignan valores más altos a aquellos términos que son muy frecuentes en una receta en particular y muy poco en otras recetas. De esta forma, se penaliza a las palabras que aparecen en muchas recetas, lo cual ocurre con las palabras básicas.
 
-De esta forma, se obteniene una matriz 
+De esta forma, se obteniene una matriz que tiene la siguiente forma:
 
+<img src="https://github.com/user-attachments/assets/ae6c3924-0b98-4938-831a-19711aa8547d" alt="imagen" width="300">
 
+Se puede observar que las dimesiones de la matriz son 20130x3924, correpondientes a las 20130 recetas y las 3924 palabras únicas que forman el vocabulario de las recetas. En la parte izquierda se muestran las "coordenadas" de cada palabra y a la derecha el peso TF-IDF asociado a esa palabra.
+
+<img src="" alt="imagen" width="400">
 
 ### 3.1. Word2Vec
+
+
+Se han realizado distintos análisis a partir de los embeddings extraídos con Word2Vec. En primer lugar, se ha realizado una reducción de la dimensionalidad de los datos y se han representado, obteniendo la siguiente figura:
+
+<img src="https://github.com/user-attachments/assets/032a09d2-4327-4a58-8aeb-6f060b816f89" alt="imagen" width="400">
+<img src="https://github.com/user-attachments/assets/91fc2147-0450-4db8-8491-88c3c0067eba" alt="imagen" width="400">
+
+
 ### 3.1. TF-IDF
 
 
