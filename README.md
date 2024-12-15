@@ -140,7 +140,8 @@ Para justificar este primer analisis se utilizan componentes escogidas aleatoria
 
 
 Los resultados evidencian que SelectKBest mejora el desempeño del modelo, al elegir características que tienen una mayor correlación con la variable objetivo, en comparación con la selección aleatoria de características. Esto refuerza la idea de que, en problemas supervisados (predicción del rating de recetas), es más efectivo utilizar técnicas de selección de características que consideren la relación con el target, como SelectKBest, en lugar de una selección aleatoria que no aprovecha esa información.
-<img width="143" alt="image" src="https://github.com/user-attachments/assets/5010445f-9505-4778-900e-195b15938865" alt="imagen" width="800">
+
+<img src="https://github.com/user-attachments/assets/5010445f-9505-4778-900e-195b15938865" alt="imagen" width="800">
 
 Este análisis permite argumentar que la reducción de dimensionalidad supervisada (como SelectKBest) proporciona mejores resultados que una reducción aleatoria de características.
 
