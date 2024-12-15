@@ -119,7 +119,18 @@ Por último, se ha calculado la similitud coseno entre recetas a partir de los _
 
 
 ### 3.1. Embeddings contextuales: BERT
-Por último, se han vectorizado las características correpondientes a la variable _directions_ a través del modelo basado en transformers BERT.
+
+En este proyecto, se utiliza BERT (Bidirectional Encoder Representations from Transformers) para generar embeddings contextuales de texto a partir del campo directions de nuestras recetas. La idea principal es capturar el contexto semántico de las palabras en cada receta, proporcionando una representación rica y contextualizada para usarse como entrada en modelos de aprendizaje automático para predecir el rating.
+
+Se utilizó el modelo preentrenado bert-base-uncased, que ha sido entrenado con un corpus de 2.500 millones de palabras provenientes de Wikipedia y Google Books. Este modelo genera embeddings con un tamaño fijo de 768 dimensiones para cada entrada, lo que corresponde al tamaño del último estado oculto del token [CLS]. Este token es especialmente relevante porque captura la información semántica de toda la secuencia.
+
+Dado que el procesamiento con BERT es computacionalmente intensivo y nuestro dataset contiene 20,130 recetas, se decidió reducir el tamaño del dataset a 10,000 muestras seleccionadas aleatoriamente. Esto permitió trabajar con un volumen de datos manejable dentro de las restricciones de memoria y tiempo.
+
+Para cada texto, se aplicó una tokenización con un límite máximo de 512 tokens, ya que esta es la longitud máxima permitida por el modelo BERT. Si una receta supera este límite, el texto se trunca para ajustarse. Este recorte es razonable porque las instrucciones de las recetas suelen ser más cortas que este límite.
+
+Para verificar la calidad y las propiedades de los embeddings generados por BERT, graficamos la distribución de valores para un token específico. Esto nos permite observar cómo se estructuran los valores en el espacio latente de 768 dimensiones.
+
+<img width="305" alt="image" src="https://github.com/user-attachments/assets/0cc92551-1ea5-4884-a0de-d29ab97a2a0b" />
 
 ## 4. Entrenamiento y evaluación
 ### 4.1. Redes neuronales con PyTorch
