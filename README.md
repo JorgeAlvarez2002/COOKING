@@ -73,6 +73,23 @@ Con la homogenización se busca que todas las palabras con significados equivale
 <img src="https://github.com/user-attachments/assets/96a86f48-8dd9-4ad2-9eef-6e49a2eea7dc" alt="imagen" width="400">
 
 
-
-
 ### 2.4. Limpieza
+Por último, se procede a la eliminación de aquellas palabras que son muy comunes en el lenguaje y que por lo tanto no tienen un contenido semnántico relevante.
+
+<img src="https://github.com/user-attachments/assets/aed6f406-5057-4940-aaa1-002a5692d2fe" alt="imagen" width="400">
+
+
+## 3. Vectorización
+A continuación, se va a realizar la vectorización de la  variable _directions_, con la que se trabajará en el resto del proyecto.
+
+### 3.1. TF-IDF
+En este tipo de vectorización, se asignan valores más altos a aquellos términos que son muy frecuentes en un documento en particular y muy poco en otros documentos. De esta forma, se penaliza a las palabras que aparecen en muchos documentos, lo cual ocurre con las palabras básicas.
+
+De esta forma, se obteniene una matriz 
+
+
+
+### 3.1. Word2Vec
+### 3.1. TF-IDF
+
+
