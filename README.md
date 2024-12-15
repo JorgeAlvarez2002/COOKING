@@ -82,7 +82,12 @@ Por último, se procede a la eliminación de aquellas palabras que son muy comun
 A continuación, se va a realizar la vectorización de la  variable _directions_, con la que se trabajará en el resto del proyecto.
 
 ### 3.1. TF-IDF
+
 En este tipo de vectorización, se asignan valores más altos a aquellos términos que son muy frecuentes en una receta en particular y muy poco en otras recetas. De esta forma, se penaliza a las palabras que aparecen en muchas recetas, lo cual ocurre con las palabras básicas.
+
+La representación TF-IDF se generó a partir del texto preprocesado (directions y description) de cada receta. Se utilizó la clase TfidfVectorizer de sklearn, configurada con los siguientes parámetros:
+- min_df=`: Se descartan términos que aparecen en menos de 5 documentos.
+- max_df=0.8: Se eliminan términos que aparecen en más del 80% de los documentos.
 
 De esta forma, se obteniene una matriz que tiene la siguiente forma:
 
@@ -93,7 +98,8 @@ Se puede observar que las dimesiones de la matriz son 20130x3924, correpondiente
 
 ### 3.1. Word2Vec
 
-Se han realizado distintos análisis a partir de los embeddings extraídos con Word2Vec. En primer lugar, se ha realizado una reducción de la dimensionalidad de los datos y se han representado, obteniendo la siguiente figura:
+Se han realizado distintos análisis a partir de los embeddings extraídos con Word2Vec. En primer lugar, se ha realizado una reducción de la dimensionalidad de los datos.
+Un tamaño de embedding de 100 es razonable y suficiente para el número de recetas que tenemos (20,130) debido a que con 20,130 recetas, un embedding de tamaño 100 representa 2013000 parámetros (si consideramos un modelo simple con una capa de entrada que procesa estos embeddings). Esto es manejable para entrenar modelos estándar como Random Forest o k-NN sin riesgo de sobreajuste. Además un embedding más grande de 300 o 768 como Bert podría ser innecesario y añadir ruido en lugar de mejorar la capacidad de generalización.
 
 <img src="https://github.com/user-attachments/assets/032a09d2-4327-4a58-8aeb-6f060b816f89" alt="imagen" width="700">
 <img src="https://github.com/user-attachments/assets/91fc2147-0450-4db8-8491-88c3c0067eba" alt="imagen" width="700">
@@ -120,9 +126,14 @@ Por último, se han vectorizado las características correpondientes a la variab
 
 ### 4.1. Técnicas de regresión de la librería Scikit-learn
 
-HABLAR DE QUE CUANDO AUMENTAMOS LAS MUESTRAS EL RESULTADO EMPEORA PORQUE HAY MUESTRAS RUIDOSAS
+En este punto del proyecto, nos enfocamos en el entrenamiento y evaluación de modelos de regresión utilizando las representaciones vectoriales previamente comentadas. Los modelos seleccionados para esta tarea son Random Forest y k-Nearest Neighbors (kNN), los cuales serán evaluados sobre tres tipos de representaciones vectoriales de los documentos: TF-IDF, Word2Vec y BERT.
 
+Estos modelos de regresión, Random Forest y kNN, se entrenarán con las tres representaciones mencionadas para evaluar su rendimiento en la predicción de las valoraciones de recetas. A través de esta experimentación, buscaremos identificar qué tipo de representación vectorial y qué modelo ofrecen un mejor rendimiento en esta tarea de regresión.
+#### 4.1.1 TF-IDF
 
+#### 4.1.2 Word2vec
+
+#### 4.1.3 Word2vec
 ## 5. Comparación de lo obtenido con el _fine-tuning_ de un modelo preentrenado con _Hugging Face_
 
 
