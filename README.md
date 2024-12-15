@@ -91,7 +91,6 @@ De esta forma, se obteniene una matriz que tiene la siguiente forma:
 Se puede observar que las dimesiones de la matriz son 20130x3924, correpondientes a las 20130 recetas y las 3924 palabras únicas que forman el vocabulario de las recetas. En la parte izquierda se muestran las "coordenadas" de cada palabra y a la derecha el peso TF-IDF asociado a esa palabra.
 
 
-
 ### 3.1. Word2Vec
 
 Se han realizado distintos análisis a partir de los embeddings extraídos con Word2Vec. En primer lugar, se ha realizado una reducción de la dimensionalidad de los datos y se han representado, obteniendo la siguiente figura:
@@ -119,5 +118,14 @@ Por último, se han vectorizado las características correpondientes a la variab
 ## 4. Entrenamiento y evaluación
 ### 4.1. Redes neuronales con PyTorch
 
+### 4.1. Técnicas de regresión de la librería Scikit-learn
+
+HABLAR DE QUE CUANDO AUMENTAMOS LAS MUESTRAS EL RESULTADO EMPEORA PORQUE HAY MUESTRAS RUIDOSAS
+
 
 ## 5. Comparación de lo obtenido con el _fine-tuning_ de un modelo preentrenado con _Hugging Face_
+
+
+
+
+
