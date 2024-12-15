@@ -196,18 +196,52 @@ Como un k muy alto puede llevar a subajuste (underfitting), ya que el modelo ser
 
 En la representación de valor real vs predicción se puede llegar a la misma conclusión que con random forest y los valores que mejor se predicen son el rating 3.5 y 4.
 
+<img src="https://github.com/user-attachments/assets/90a1c929-5b30-49e7-b33c-3a325460335c" width="374" alt="image" >
+
 Sobre la curva de aprendizaje se pueden hacer comentarios interesantes:
 
 El puntaje del conjunto de entrenamiento que oscila alrededor de 0.3 indica que el modelo no logra ajustar completamente los datos de entrenamiento. Esto puede sugerir un subajuste (underfitting), donde el modelo no es lo suficientemente complejo para capturar las relaciones entre las características y la variable objetivo.
 Que el puntaje de prueba comience en -0.1 es preocupante porque sugiere que el modelo inicial tiene un rendimiento muy bajo, posiblemente peor que un modelo ingenuo.
 
-<img src="https://github.com/user-attachments/assets/90a1c929-5b30-49e7-b33c-3a325460335c" width="374" alt="image" >
+<img src="https://github.com/user-attachments/assets/ad86458d-3b22-4ec4-8347-edfbeb673ea5" width="385" alt="image" >
 
-
+<img width="443" alt="image" src="https://github.com/user-attachments/assets/e9452525-21b6-45a0-8a9b-c318ad52cfd2" />
 
 #### 4.1.2 Word2vec
 
-#### 4.1.3 Word2vec
+Para los análisis se hará uso de un torch size de (20130,100) la dimensionalidad de 100 se justificó previamente pero dimensionalidad 100 permite un equilibrio entre eficiencia y rendimiento, además que para el número de recetas y longitud de las recetas una dimensionalidad de 100 es suficiente, se hará una prueba con 200 más adelante para confirmar esto.
+
+Resultado para 50 árboles de decisión:
+
+<img  src="https://github.com/user-attachments/assets/429f7d5d-d550-42a6-9458-8894a060d8f8" width="230" alt="image">
+
+Con validación cruzada se confirma la consistencia de este resultado, MSE con validación cruzada: 1.4465
+
+<img src="https://github.com/user-attachments/assets/ded1321f-201c-4517-8464-25bbe80c3091" width="400" alt="image" >
+<img  src="https://github.com/user-attachments/assets/751c78fd-c00d-4941-a2f3-eac067fb3b63" width="400" alt="image">
+
+Si se usa la representación vectorial con dimensionalidad 200 se obtiene el siguiente MSE:
+
+<img  src="https://github.com/user-attachments/assets/d89b08da-0a6c-47e2-b319-1db36f44ea9d" width="225" alt="image">
+
+Por lo tanto, la mejora es infima y no justifica el hecho de duplicar la dimensionalidad. 
+
+Al igual que antes se realiza un análisis de hiperparametros con GridSearch pero fijando el dataset de entrenamiento a todo el conjunto ya que computacionalmente es viable y se obtienen los siguientes resultados como mejor modelo:
+
+<img  src="https://github.com/user-attachments/assets/3fd32550-6580-47a3-b868-069698dc42c8" width="534" alt="image">
+
+También se observa la mejoría que hay al aumentar el número de árboles de decisión pero la mejora no es sustancial y computacionalmente muy costoso.
+
+![image](https://github.com/user-attachments/assets/1d10508d-c1ee-4928-a0f5-a6f91d910e87)
+
+Por último se observa la Distribución de las predicciones vs. valores reales
+
+<img src="https://github.com/user-attachments/assets/2933fa04-3afd-42e4-a3e7-c7118dce09d4" width="425" alt="image" >
+
+
+#### 4.1.3 Bert
+
+
 ## 5. Comparación de lo obtenido con el _fine-tuning_ de un modelo preentrenado con _Hugging Face_
 
 
