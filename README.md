@@ -146,16 +146,33 @@ Este análisis permite argumentar que la reducción de dimensionalidad supervisa
 
 El modelo ha identificado ciertas palabras clave que impactan las calificaciones de las recetas, pero es importante reconocer que el modelo no entiende el significado semántico de las palabras, sino que simplemente las evalúa por su capacidad para predecir la variable objetivo (rating). Además, al ser un modelo no lineal como Random Forest, las características con mayor importancia no siempre corresponden a las palabras que intuitivamente pensaríamos que deberían tener más peso en el contexto de una receta.
 
-<img src="https://github.com/user-attachments/assets/cd20ad70-1bc2-4eda-bea6-1099e468e983" alt="imagen" width="800">
+<img src="https://github.com/user-attachments/assets/cd20ad70-1bc2-4eda-bea6-1099e468e983" alt="imagen" width="600">
 
 Se realiza también un análisis de los valores predichos vs reales, donde las predicciones si fueran perfectas se colocarían sobre la línea roja. Los malos resultados se asocian a los ratings se distribuyeb de manera no uniforme como observaremos más abajo, hay muchas recetas que poseen un rating de 3.5 y 4.5 y por ello el modelo encuentra las mayores dificultades para predecir ratings extremos (0 o 5):
 
-<img src="https://github.com/user-attachments/assets/754d0419-d1f0-4785-88f1-fd81d612c40f" alt="imagen" width="800">
+<img src="https://github.com/user-attachments/assets/754d0419-d1f0-4785-88f1-fd81d612c40f" alt="imagen" width="600">
  
 Este análisis se confirma si se observa como se distribuyen las predicciones vs los valores reales:
 
-<img src="https://github.com/user-attachments/assets/b6e2adbb-a0ca-44c0-8672-87e365930b91" alt="imagen" width="800">
+<img src="https://github.com/user-attachments/assets/b6e2adbb-a0ca-44c0-8672-87e365930b91" alt="imagen" width="600">
 
+Para mejorar el rendimiento del modelo RandomForestRegressor, hemos implementado una búsqueda exhaustiva de hiperparámetros utilizando GridSearchCV. Este proceso permite probar diferentes combinaciones de parámetros y seleccionar los que mejor optimicen la puntuación de validación cruzada (medida de rendimiento general del modelo). La búsqueda de hiperparámetros se realizó utilizando un conjunto de entrenamiento reducido (1000 recetas).
+
+ Se probaron 50, 100 y 150 árboles de decisión, se probaron distintas profundidades de 10, 20, 30 y none. También se probó el número mínimo de muestras requerido para dividir un nodo. Se probaron 2, 5 y 10 muestras. Tras ejecutar GridSearchCV con una validación cruzada de 3 pliegues (cv=3), los mejores parámetros encontrados fueron los siguientes:
+
+ <img src="https://github.com/user-attachments/assets/bc61e60b-03cd-43ca-8d59-ae4aa22bf8ed" lt="imagen" width="400">
+
+La mejor puntuación de validación cruzada obtenida fue 0.0822, lo que indica que el modelo optimizado tiene un rendimiento moderado en términos de la varianza explicada durante la validación cruzada. Aunque este valor no es alto, refleja un modelo que generaliza razonablemente bien.
+
+Se realiza un análisis para ver como varían el MSE y el R² para diferentes valores del hiperparámetro de número de árboles de decisión y del número de datos de entrenamiento. En términos generales, se esperaría que el MSE disminuya a medida que aumente el tamaño del conjunto de entrenamiento, ya que el modelo tiene más datos para aprender. Asimismo, el R² debería aumentar, ya que el modelo mejora su capacidad para explicar la variabilidad de los datos a medida que se entrena con más ejemplos.
+
+Se observa como a partir de 5000 recetas el modelo podría volverse más sensible a los datos de entrenamiento, capturando detalles no representativos o ruido. Esto puede hacer que el modelo generalice peor en el conjunto de prueba y, como resultado, el MSE empeore a medida que aumenta el tamaño del conjunto de entrenamiento.
+
+Aunque n_estimators=150 podría ofrecer más árboles, esto no necesariamente mejora el rendimiento del modelo. Si el modelo ya ha alcanzado un rendimiento óptimo con un número menor de árboles, aumentar n_estimators más allá de ese punto puede llevar a un sobrecosto computacional sin mejorar la predicción. El aumento en R² podría indicar que el modelo es capaz de explicar más de la variabilidad de los datos en general
+
+![image](https://github.com/user-attachments/assets/874701e6-7aed-4546-8a24-7163be73bc5a)
+
+En conclusión, este comportamiento de empeoramiento del MSE podría indicar que el modelo está empezando a sobreajustarse al conjunto de entrenamiento a medida que aumentas el tamaño de los datos.
 ##### 4.1.1.2 kNN
 
 
