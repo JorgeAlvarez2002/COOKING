@@ -42,9 +42,12 @@ Se representan también los diagramas para 10 categorías que tienen ratings ent
 
 
 ## 2. Preprocesado
-A continuación, se aplica un preprocesado a los datos de entrada con el objetivo de optimizar los resultados obtenidos en el cálculo de los embeddings y el entrenamiento y la evaluación posterior.
+A continuación, se aplica un preprocesado a los datos de entrada con el objetivo de optimizar los resultados obtenidos en el cálculo de los embeddings y el entrenamiento y la evaluación posterior. A través de este preprocesado, se eliminará información que no es relevante de forma que únicamente se tenga contenido semántico importante. Para ello se seguirán 4 pasos diferenciados: *wrangling*, tokenización, homogenización y limpieza.
+
+A partir de este punto, las distintas técnicas estudiadas se emplean sobre la información contenida en la variable *directions*.
 
 ### 2.1. Wrangling
+
 ### 2.2. Tokenización
 ### 2.3. Homogenización
 ### 2.4. Limpieza
