@@ -83,7 +83,7 @@ Una vez se ha separado el texto en _tokens_, antes de aplicar la homogenización
 </p>
 
 ### 2.3. Homogenización
-Con la homogenización se busca que todas las palabras con significados equivalentes se representen de una única forma de forma que el tamaño del vocabulario se vea reducido. Esto hará que a la hora de representar los _embeddings_, estos tengan dimensiones menores y en consecuencia se mejore el rendimiento del modelo. En clase se han trabajado dos técnicas, que son la lematización y _stemming_. En este caso se ha elegido la lematización por su mayor precisión, ya que las palabras se reducen a su forma base en lugar de a la palabra raíz más básica, como ocurre en _stemming_.
+Con la homogenización se busca que todas las palabras con significados equivalentes se representen de una única forma de manera que el tamaño del vocabulario se vea reducido. Esto hará que a la hora de representar los _embeddings_, estos tengan dimensiones menores y en consecuencia se mejore el rendimiento del modelo. En clase se han trabajado dos técnicas, que son la lematización y _stemming_. En este caso se ha elegido la lematización por su mayor precisión, ya que las palabras se reducen a su forma base en lugar de a la palabra raíz más básica, como ocurre en _stemming_.
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/96a86f48-8dd9-4ad2-9eef-6e49a2eea7dc" alt="imagen" width="400">
