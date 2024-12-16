@@ -82,7 +82,6 @@ Por último, se procede a la eliminación de aquellas palabras que son muy comun
 A continuación, se va a realizar la vectorización de la  variable _directions_, con la que se trabajará en el resto del proyecto.
 
 ### 3.1. TF-IDF
-
 En este tipo de vectorización, se asignan valores más altos a aquellos términos que son muy frecuentes en una receta en particular y muy poco en otras recetas. De esta forma, se penaliza a las palabras que aparecen en muchas recetas, lo cual ocurre con las palabras básicas.
 
 La representación TF-IDF se generó a partir del texto preprocesado (directions y description) de cada receta. Se utilizó la clase TfidfVectorizer de sklearn, configurada con los siguientes parámetros:
@@ -97,7 +96,6 @@ Se puede observar que las dimesiones de la matriz son 20130x3924, correpondiente
 
 
 ### 3.1. Word2Vec
-
 Se han realizado distintos análisis a partir de los embeddings extraídos con Word2Vec. En primer lugar, se ha realizado una reducción de la dimensionalidad de los datos.
 Un tamaño de embedding de 100 es razonable y suficiente para el número de recetas que tenemos (20,130) debido a que con 20,130 recetas, un embedding de tamaño 100 representa 2013000 parámetros (si consideramos un modelo simple con una capa de entrada que procesa estos embeddings). Esto es manejable para entrenar modelos estándar como Random Forest o k-NN sin riesgo de sobreajuste. Además un embedding más grande de 300 o 768 como Bert podría ser innecesario y añadir ruido en lugar de mejorar la capacidad de generalización.
 
@@ -115,11 +113,8 @@ Por último, se ha calculado la similitud coseno entre recetas a partir de los _
 <img src="https://github.com/user-attachments/assets/80080646-f6d1-4e31-8026-d1aa9a36f9ca" alt="imagen" width="800">
 <img src="https://github.com/user-attachments/assets/44627365-4ea8-46f4-9184-be13ca234709" alt="imagen" width="800">
 
-<img src="" alt="imagen" width="400">
-
 
 ### 3.1. Embeddings contextuales: BERT
-
 En este proyecto, se utiliza BERT (Bidirectional Encoder Representations from Transformers) para generar embeddings contextuales de texto a partir del campo directions de nuestras recetas. La idea principal es capturar el contexto semántico de las palabras en cada receta, proporcionando una representación rica y contextualizada para usarse como entrada en modelos de aprendizaje automático para predecir el rating.
 
 Se utilizó el modelo preentrenado bert-base-uncased, que ha sido entrenado con un corpus de 2.500 millones de palabras provenientes de Wikipedia y Google Books. Este modelo genera embeddings con un tamaño fijo de 768 dimensiones para cada entrada, lo que corresponde al tamaño del último estado oculto del token [CLS]. Este token es especialmente relevante porque captura la información semántica de toda la secuencia.
@@ -133,8 +128,9 @@ Para verificar la calidad y las propiedades de los embeddings generados por BERT
 <img width="305" alt="image" src="https://github.com/user-attachments/assets/0cc92551-1ea5-4884-a0de-d29ab97a2a0b" />
 
 ## 4. Entrenamiento y evaluación
-EXPLICAR MSE Y R^2
 A continuación se van a entrenar y evaluar modelos de regresión utilizando distintas estrategias de aprendizaje automático.
+
+Para la comparación de las distintas técnicas y configuraciones implementadas, se va a calcular el MSE y el R^2. Por un lado, el MSE (_Mean Squared Error_) representa la magnitud promedio de los errores al cuadrado, siendo los errores en este caso las diferencias entre los valores reales y las predicciones del modelo. Por otro lado, el R^2 es el coeficiente de determinación, y mide qué proporción de la variación total es explicada por el modelo.
 
 ### 4.1. Redes neuronales con PyTorch
 En este apartado se van a entrenar y evaluar distintas configuraciones de red reuronal, en las que variarán distintos hiperparámetros como el número de épocas, la tamaño de batch y la tasa de aprendizaje. También se mostrará el efecto en los resultados de aumentar el número de capas de la red.
@@ -151,14 +147,19 @@ Por otro lado, se ha aumentado en 2 el número de capas a partir de las configur
 Por último, probamos a aumentar el número de épocas a 100 y 200 a partir de la configuración "caso mejor", con el objetivo de comparar si esto mejora los resultados obtenidos a cambio de un mayor coste computacional.
 
 #### 4.1.1 TF-IDF
-![image](https://github.com/user-attachments/assets/b38bd058-88eb-4519-8a90-78c91f1ca27f)
+<img src="https://github.com/user-attachments/assets/b38bd058-88eb-4519-8a90-78c91f1ca27f" alt="imagen" width="400">
 
+<img src="https://github.com/user-attachments/assets/b13d507b-e676-4e62-a44f-71e48d5b01be" alt="imagen" width="400">
 
-![image](https://github.com/user-attachments/assets/b13d507b-e676-4e62-a44f-71e48d5b01be)
-
+<img src="https://github.com/user-attachments/assets/bf7e7faf-eec8-426b-994b-a8bbef46669b" alt="imagen" width="400">
 
 
 #### 4.1.2 Word2vec
+
+![image](https://github.com/user-attachments/assets/a0d95d94-607a-4ad0-a0fc-376a480cfa5c)
+![image](https://github.com/user-attachments/assets/351e3d66-7a8e-4a97-bddc-02f0a3ab4e1f)
+![image](https://github.com/user-attachments/assets/e28919de-ceb4-4b89-bdd6-7594fb38976d)
+
 
 #### 4.1.3 Bert
 
