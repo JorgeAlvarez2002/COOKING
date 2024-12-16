@@ -58,37 +58,44 @@ A continuación, se aplica un preprocesado a los datos de entrada (variables _di
 
 Los textos originales son los siguientes:
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/fe97a93b-930a-4955-92a5-e1f71bd3a9ff" alt="imagen" width="400">
+</p>
 
 ### 2.1. _Wrangling_
 En este primer paso, se eliminan caracteres del texto que no son relevantes semánticamente, como signos de puntuación y números. En este caso, se ha elegido eliminar comas (**,**), guiones (**-**), puntos (**.**) y números. 
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/0620febe-9dcf-411f-8d9c-79d3ff006199" alt="imagen" width="400">
 <img src="https://github.com/user-attachments/assets/03fa3941-0813-4fa6-bbbb-6a2c7560486d" alt="imagen" width="400">
-
-
+</p>
 
 ### 2.2. Tokenización
 La tokenización consiste en la segmentación del texto en _tokens_, que en este caso serán palabras individuales.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/f279ab6b-cb67-453d-965e-347a44c59366" alt="imagen" width="400">
+</p>
 
 Una vez se ha separado el texto en _tokens_, antes de aplicar la homogenización, se ha aplicado un filtrado en el que todas las letras del texto se convierten a minúsculas y se eliminan todos aquellos caracteres que no se consideran alfanuméricos. 
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/bd55c717-13bd-4220-a309-ce125a5ef7fa" alt="imagen" width="400">
-
+</p>
 
 ### 2.3. Homogenización
 Con la homogenización se busca que todas las palabras con significados equivalentes se representen de una única forma de forma que el tamaño del vocabulario se vea reducido. Esto hará que a la hora de representar los _embeddings_, estos tengan dimensiones menores y en consecuencia se mejore el rendimiento del modelo. En clase se han trabajado dos técnicas, que son la lematización y _stemming_. En este caso se ha elegido la lematización por su mayor precisión, ya que las palabras se reducen a su forma base en lugar de a la palabra raíz más básica, como ocurre en _stemming_.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/96a86f48-8dd9-4ad2-9eef-6e49a2eea7dc" alt="imagen" width="400">
-
+</p>
 
 ### 2.4. Limpieza
-Por último, se procede a la eliminación de aquellas palabras que son muy comunes en el lenguaje y que por lo tanto no tienen un contenido semnántico relevante.
+Por último, se procede a la eliminación de aquellas palabras que son muy comunes en el lenguaje y que por lo tanto no tienen un contenido semántico relevante.
 
-<img src="https://github.com/user-attachments/assets/aed6f406-5057-4940-aaa1-002a5692d2fe" alt="imagen" width="400">
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/aed6f406-5057-4940-aaa1-002a5692d2fe" alt="imagen" width="400">
+</p>
 
 ## 3. Vectorización
 A continuación, se va a realizar la vectorización de la  variable _directions_, con la que se trabajará en el resto del proyecto.
@@ -101,8 +108,9 @@ La representación TF-IDF se generó a partir del texto preprocesado (directions
 - max_df=0.8: Se eliminan términos que aparecen en más del 80% de los documentos.
 
 De esta forma, se obteniene una matriz que tiene la siguiente forma:
-
-<img src="https://github.com/user-attachments/assets/ae6c3924-0b98-4938-831a-19711aa8547d" alt="imagen" width="300">
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ae6c3924-0b98-4938-831a-19711aa8547d" alt="imagen" width="300">
+</p>
 
 Se puede observar que las dimesiones de la matriz son 20130x3924, correpondientes a las 20130 recetas y las 3924 palabras únicas que forman el vocabulario de las recetas. En la parte izquierda se muestran las "coordenadas" de cada palabra y a la derecha el peso TF-IDF asociado a esa palabra.
 
@@ -111,8 +119,10 @@ Se puede observar que las dimesiones de la matriz son 20130x3924, correpondiente
 Se han realizado distintos análisis a partir de los embeddings extraídos con Word2Vec. En primer lugar, se ha realizado una reducción de la dimensionalidad de los datos.
 Un tamaño de embedding de 100 es razonable y suficiente para el número de recetas que tenemos (20,130) debido a que con 20,130 recetas, un embedding de tamaño 100 representa 2013000 parámetros (si consideramos un modelo simple con una capa de entrada que procesa estos embeddings). Esto es manejable para entrenar modelos estándar como Random Forest o k-NN sin riesgo de sobreajuste. Además un embedding más grande de 300 o 768 como Bert podría ser innecesario y añadir ruido en lugar de mejorar la capacidad de generalización.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/032a09d2-4327-4a58-8aeb-6f060b816f89" alt="imagen" width="700">
 <img src="https://github.com/user-attachments/assets/91fc2147-0450-4db8-8491-88c3c0067eba" alt="imagen" width="700">
+</p>
 
 Podemos observar que los términos que son similares en contexto entre sí presentan una distancia espacial entre ellos menor. EXTENDER UN POCO.
 
