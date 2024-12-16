@@ -14,7 +14,9 @@ Para el análisis de las variables de entrada, se ha realizado una representaci�
 
 Como primer análisis de los datos, se propone la visualización de las 10 categorías con mayor _rating_.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/6f7c0d12-a968-4085-9af7-563ac21a7b02" alt="imagen" width="400">
+</p>
 
 Como se puede observar, son 9 las categorías con el valor de _rating_ máximo (_rating_=5).
 
