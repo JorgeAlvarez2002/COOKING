@@ -154,7 +154,7 @@ Para verificar la calidad y las propiedades de los embeddings generados por BERT
 ## 4. Entrenamiento y evaluación
 A continuación se van a entrenar y evaluar modelos de regresión utilizando distintas estrategias de aprendizaje automático.
 
-Para la comparación de las distintas técnicas y configuraciones implementadas, se va a calcular el MSE y el R^2. Por un lado, el MSE (_Mean Squared Error_) representa la magnitud promedio de los errores al cuadrado, siendo los errores en este caso las diferencias entre los valores reales y las predicciones del modelo. Por otro lado, el R^2 es el coeficiente de determinación, y mide qué proporción de la variación total es explicada por el modelo.
+Para la comparación de las distintas técnicas y configuraciones implementadas, se va a calcular el MSE y el R². Por un lado, el MSE (_Mean Squared Error_) representa la magnitud promedio de los errores al cuadrado, siendo los errores en este caso las diferencias entre los valores reales y las predicciones del modelo. Por otro lado, el R² es el coeficiente de determinación, y mide qué proporción de la variación total es explicada por el modelo.
 
 ### 4.1. Redes neuronales con PyTorch
 En este apartado se van a entrenar y evaluar distintas configuraciones de red reuronal, en las que se variarán distintos hiperparámetros como el número de épocas, la tamaño de batch y la tasa de aprendizaje. También se mostrará el efecto en los resultados de aumentar el número de capas de la red.
@@ -177,7 +177,7 @@ Como se puede observar, los resultados mejoran con respecto al "caso peor" al au
 <img src="https://github.com/user-attachments/assets/b38bd058-88eb-4519-8a90-78c91f1ca27f" alt="imagen" width="400">
 </p>
 
-Al aumentar el número de capas de la red neuronal, se observa una mejora al partir de la configuración correspondiente al "caso peor". Sin embargo, esto no es así si se parte de la configuración correspondiente al "caso mejor", pues, aunque ligeramente, los valores de MSE y R^2 empeoran, lo cual puede deberse a un sobreajuste de los datos.
+Al aumentar el número de capas de la red neuronal, se observa una mejora al partir de la configuración correspondiente al "caso peor". Sin embargo, esto no es así si se parte de la configuración correspondiente al "caso mejor", pues, aunque ligeramente, los valores de MSE y R² empeoran, lo cual puede deberse a un sobreajuste de los datos.
 <p align="center">
 <img src="https://github.com/user-attachments/assets/b13d507b-e676-4e62-a44f-71e48d5b01be" alt="imagen" width="400">
 </p>
@@ -194,7 +194,7 @@ A continuación se repite el análisis anterior, esta vez para los embeddings ex
 <img src="https://github.com/user-attachments/assets/a0d95d94-607a-4ad0-a0fc-376a480cfa5c" alt="imagen" width="400">
 </p>
 
-En cuanto al aumento del número de capas, como ya se venía adelantando, los valores de MSE y R^2 son mejores de forma global. Esto puede explicarse de nuevo con el formato de los _embeddings_ extraídos con Word2Vec, los cuales permiten un apredizaje más profundo, beneficiándose por tanto de redes con un mayor número de capas. Aún así, siguen teniendo el mismo comportamiento que en el caso TF-IDF: aumentar dos capas el número de capas de la red supone una mejora considerable para el "caso peor", sin embargo, con respecto al "caso mejor" se mantiene constante la tasa de error.
+En cuanto al aumento del número de capas, como ya se venía adelantando, los valores de MSE y R² son mejores de forma global. Esto puede explicarse de nuevo con el formato de los _embeddings_ extraídos con Word2Vec, los cuales permiten un apredizaje más profundo, beneficiándose por tanto de redes con un mayor número de capas. Aún así, siguen teniendo el mismo comportamiento que en el caso TF-IDF: aumentar dos capas el número de capas de la red supone una mejora considerable para el "caso peor", sin embargo, con respecto al "caso mejor" se mantiene constante la tasa de error.
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/351e3d66-7a8e-4a97-bddc-02f0a3ab4e1f" alt="imagen" width="400">
@@ -239,17 +239,17 @@ La matriz TF-IDF es costosa computacionalmente para un regresor como _Random For
 
 Para justificar este primer analisis se utilizan componentes escogidas aleatoriamente y a través del método _SelectKbest_ obteniéndose los siguientes resultados:
 
-Los resultados evidencian que SelectKBest mejora el desempeño del modelo, al elegir características que tienen una mayor correlación con la variable objetivo, en comparación con la selección aleatoria de características. Esto refuerza la idea de que, en problemas supervisados (predicción del rating de recetas), es más efectivo utilizar técnicas de selección de características que consideren la relación con el target, como SelectKBest, en lugar de una selección aleatoria que no aprovecha esa información.
+Los resultados evidencian que _SelectKBest_ mejora el desempeño del modelo, al elegir características que tienen una mayor correlación con la variable objetivo, en comparación con la selección aleatoria de características. Esto refuerza la idea de que, en problemas supervisados (predicción del _rating_ de recetas), es más efectivo utilizar técnicas de selección de características que consideren la relación con el _target_, como _SelectKBest_, en lugar de una selección aleatoria que no aprovecha esa información.
 <p align="center">
 <img src="https://github.com/user-attachments/assets/5010445f-9505-4778-900e-195b15938865" alt="imagen" width="400">
 </p>
-Este análisis permite argumentar que la reducción de dimensionalidad supervisada (como SelectKBest) proporciona mejores resultados que una reducción aleatoria de características. Con el uso de validación cruzada, se ha obtenido una evaluación más precisa del rendimiento del modelo, con un MSE de 1.4202, que es ligeramente mejor que los resultados iniciales obtenidos con SelectKBest sin validación cruzada. Esto valida la robustez de tu modelo y asegura que la selección de características es adecuada para predecir el rating de las recetas.
+Este análisis permite argumentar que la reducción de dimensionalidad supervisada (como _SelectKBest_) proporciona mejores resultados que una reducción aleatoria de características. Con el uso de validación cruzada, se ha obtenido una evaluación más precisa del rendimiento del modelo, con un MSE de 1.4202, que es ligeramente mejor que los resultados iniciales obtenidos con _SelectKBest_ sin validación cruzada. Esto valida la robustez del modelo y asegura que la selección de características es adecuada para predecir el _rating_ de las recetas.
 
 El modelo ha identificado ciertas palabras clave que impactan las calificaciones de las recetas, pero es importante reconocer que el modelo no entiende el significado semántico de las palabras, sino que simplemente las evalúa por su capacidad para predecir la variable objetivo (rating). Además, al ser un modelo no lineal como Random Forest, las características con mayor importancia no siempre corresponden a las palabras que intuitivamente pensaríamos que deberían tener más peso en el contexto de una receta.
 <p align="center">
 <img src="https://github.com/user-attachments/assets/cd20ad70-1bc2-4eda-bea6-1099e468e983" alt="imagen" width="600">
 </p>
-Se realiza también un análisis de los valores predichos vs reales, donde las predicciones si fueran perfectas se colocarían sobre la línea roja. Los malos resultados se asocian a los ratings se distribuyeb de manera no uniforme como observaremos más abajo, hay muchas recetas que poseen un rating de 3.5 y 4.5 y por ello el modelo encuentra las mayores dificultades para predecir ratings extremos (0 o 5):
+Se realiza también un análisis de los valores predichos vs reales, donde las predicciones si fueran perfectas se colocarían sobre la línea roja. Los malos resultados se asocian a los ratings se distribuyen de manera no uniforme como observaremos más abajo, hay muchas recetas que poseen un _rating_ de 3.5 y 4.5 y por ello el modelo encuentra las mayores dificultades para predecir _ratings_ extremos (0 o 5):
 <p align="center">
 <img src="https://github.com/user-attachments/assets/754d0419-d1f0-4785-88f1-fd81d612c40f" alt="imagen" width="600">
  </p>
@@ -271,7 +271,7 @@ Se realiza un análisis para ver como varían el MSE y el R² para diferentes va
 
 Se observa como a partir de 5000 recetas el modelo podría volverse más sensible a los datos de entrenamiento, capturando detalles no representativos o ruido. Esto puede hacer que el modelo generalice peor en el conjunto de prueba y, como resultado, el MSE empeore a medida que aumenta el tamaño del conjunto de entrenamiento.
 
-Aunque n_estimators=150 podría ofrecer más árboles, esto no necesariamente mejora el rendimiento del modelo. Si el modelo ya ha alcanzado un rendimiento óptimo con un número menor de árboles, aumentar n_estimators más allá de ese punto puede llevar a un sobrecosto computacional sin mejorar la predicción. El aumento en R² podría indicar que el modelo es capaz de explicar más de la variabilidad de los datos en general
+Aunque _n_estimators=150_ podría ofrecer más árboles, esto no necesariamente mejora el rendimiento del modelo. Si el modelo ya ha alcanzado un rendimiento óptimo con un número menor de árboles, aumentar n_estimators más allá de ese punto puede llevar a un sobrecosto computacional sin mejorar la predicción. El aumento en R² podría indicar que el modelo es capaz de explicar más de la variabilidad de los datos en general
 
 ![image](https://github.com/user-attachments/assets/874701e6-7aed-4546-8a24-7163be73bc5a)
 
@@ -286,6 +286,7 @@ Este análisis permite ver que aunque aumentes el tamaño del conjunto de entren
 <p align="center">
 <img src="https://github.com/user-attachments/assets/d1dfba4f-522e-4abe-8e2a-fddeffc0be66" width="425" alt="image">
 </p>
+
 ##### 4.2.1.2 kNN
 
 Al observar los resultados obtenidos de Random Forest, como el MSE alto tanto en el conjunto de entrenamiento como en el de prueba (en particular, el MSE de prueba no mejora significativamente con el tamaño del conjunto de entrenamiento), es claro que el modelo no está capturando bien las relaciones subyacentes entre las características y la variable objetivo. A pesar de los esfuerzos por optimizar los hiperparámetros (a través de GridSearchCV), el modelo sigue mostrando un rendimiento limitado. Este comportamiento puede indicar que Random Forest no es adecuado para la naturaleza de los datos en cuestión, o que las características seleccionadas no son las más representativas. Se decide probar con el regresor kNN que es un modelo no paramétrico que no hace suposiciones sobre la forma de la relación entre las características y la variable objetivo. A diferencia de Random Forest, que intenta aprender patrones complejos mediante árboles de decisión, kNN utiliza una metodología simple basada en la proximidad de los puntos de datos, lo que puede ser útil cuando los datos tienen una estructura no tan compleja.
