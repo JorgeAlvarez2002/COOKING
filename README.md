@@ -283,7 +283,7 @@ Con la gráfica de la curva de aprendizaje que se genera, se observa que el MSE 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/c6d3e36f-711d-4b43-801e-1be2c48513bd" alt="imagen" width="600">
 </p>
-Este análisis permite ver que aunque aumentes el tamaño del conjunto de entrenamiento, el modelo aún no ha logrado reducir suficientemente el MSE en el conjunto de prueba ni de entrenamiento. Si a continuación se observa el histograma que compara las predicciones vs valores reales para el mejor modelo obtenido tras el estudio previo de hiperparámetros se observa un ligero mejor ajuste de las predicciones:
+Este análisis permite ver que aunque se aumente el tamaño del conjunto de entrenamiento, el modelo aún no ha logrado reducir suficientemente el MSE en el conjunto de prueba ni de entrenamiento. Si a continuación se observa el histograma que compara las predicciones vs valores reales para el mejor modelo obtenido tras el estudio previo de hiperparámetros se observa un ligero mejor ajuste de las predicciones:
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/d1dfba4f-522e-4abe-8e2a-fddeffc0be66" width="425" alt="image">
@@ -310,18 +310,19 @@ En la representación de valor real vs predicción se puede llegar a la misma co
 </p>
 Sobre la curva de aprendizaje se pueden hacer comentarios interesantes:
 
-El puntaje del conjunto de entrenamiento que oscila alrededor de 0.3 indica que el modelo no logra ajustar completamente los datos de entrenamiento. Esto puede sugerir un subajuste (underfitting), donde el modelo no es lo suficientemente complejo para capturar las relaciones entre las características y la variable objetivo.
+El puntaje del conjunto de entrenamiento que oscila alrededor de 0.3 indica que el modelo no logra ajustar completamente los datos de entrenamiento. Esto puede sugerir un subajuste (_underfitting_), donde el modelo no es lo suficientemente complejo para capturar las relaciones entre las características y la variable objetivo.
 Que el puntaje de prueba comience en -0.1 es preocupante porque sugiere que el modelo inicial tiene un rendimiento muy bajo, posiblemente peor que un modelo ingenuo.
 <p align="center">
 <img src="https://github.com/user-attachments/assets/ad86458d-3b22-4ec4-8347-edfbeb673ea5" width="385" alt="image" >
 
 <img width="443" alt="image" src="https://github.com/user-attachments/assets/e9452525-21b6-45a0-8a9b-c318ad52cfd2" />
 </p>
+
 #### 4.2.2 Word2vec
 
 ##### 4.2.2.1 Random Forest
 
-Para los análisis se hará uso de un torch size de (20130,100) la dimensionalidad de 100 se justificó previamente pero dimensionalidad 100 permite un equilibrio entre eficiencia y rendimiento, además que para el número de recetas y longitud de las recetas una dimensionalidad de 100 es suficiente, se hará una prueba con 200 más adelante para confirmar esto.
+Para los análisis se hará uso de un torch size de (20130,100). La dimensionalidad de 100, tal y como se justificó previamente, permite un equilibrio entre eficiencia y rendimiento. Como además para el número de recetas y longitud de las recetas una dimensionalidad de 100 es suficiente, se hará una prueba con 200 más adelante para confirmar esto.
 
 Resultado para 50 árboles de decisión:
 <p align="center">
@@ -336,7 +337,7 @@ Si se usa la representación vectorial con dimensionalidad 200 se obtiene el sig
 <p align="center">
 <img  src="https://github.com/user-attachments/assets/d89b08da-0a6c-47e2-b319-1db36f44ea9d" width="225" alt="image">
 </p>
-Por lo tanto, la mejora es infima y no justifica el hecho de duplicar la dimensionalidad. 
+Por lo tanto, la mejora es ínfima y no justifica el hecho de duplicar la dimensionalidad. 
 
 Al igual que antes se realiza un análisis de hiperparametros con GridSearch pero fijando el dataset de entrenamiento a todo el conjunto ya que computacionalmente es viable y se obtienen los siguientes resultados como mejor modelo:
 <p align="center">
@@ -350,9 +351,10 @@ Por último se observa la Distribución de las predicciones vs. valores reales
 <p align="center">
 <img src="https://github.com/user-attachments/assets/2933fa04-3afd-42e4-a3e7-c7118dce09d4" width="425" alt="image" >
 </p>
+
 ##### 4.2.2.2 Regresor kNN
 
-En cuanto a los resultados para el regresor kNN utilizando como representación vectorial word2vec se observa una mejora en términos de MSE respecto al regresor kNN para la representación vectorial de TF-IDF.
+En cuanto a los resultados para el regresor kNN utilizando como representación vectorial Word2Vec se observa una mejora en términos de MSE respecto al regresor kNN para la representación vectorial de TF-IDF.
 
 <img  src="https://github.com/user-attachments/assets/5c063163-c38d-499d-b703-f15dbb042f8f" width="427" alt="image">
 
@@ -366,29 +368,33 @@ Por hacer una comparativa con el mismo k que antes se imprimen los resultados pa
 <img width="386" alt="image" src="https://github.com/user-attachments/assets/552f5e9a-da64-4954-94e3-8fe9f4d43343" />
 
 </p>
-Además para el regresor kNN se realiza un estudio de como afecta la reducción de dimensionalidad al MSE. En un primer barrido, se decide ir eliminando la dimensión i-ésima y viendo como afecta su elminación al modelo. Si para la retirada de alguna característica se observara una empeora significativa en terminos de MSE. Indica que ninguna característica individual tiene un gran impacto en el rendimiento del modelo.
+Además para el regresor kNN se realiza un estudio de cómo afecta la reducción de dimensionalidad al MSE. En un primer barrido, se decide ir eliminando la dimensión i-ésima y viendo como afecta su eliminación al modelo. Si para al retirar alguna característica se observara un empeoramiento significativo en términos de MSE, esto indicaría que ninguna característica individual tiene un gran impacto en el rendimiento del modelo.
 <p align="center">
 <img width="419" alt="image" src="https://github.com/user-attachments/assets/1b8dd871-4cfa-4a4c-b688-4846924fac89" />
 </p>
-En un siguiente análisis se estudia el impacto que tiene en el MSE la reducción de la dimensionalidad, de donde se observa un mínimo local para 20 dimensiones que se asocia a que al reducir las dimensiones, eliminamos ruido y características menos relevantes que podrían dificultar la identificación de patrones en el kNN. Esto permite que kNN funcione de manera más eficiente, ya que la distancia entre puntos es más fácil de calcular y más representativa. Al aumentar el número de dimensiones el MSE empeora inicialmente porque el modelo empieza a incluir características irrelevantes o ruidosas. A partir de 60 dimensiones el MSE vuelve a disminuir porque, al aumentar las dimensiones, el modelo empieza a recuperar características informativas y relevantes. Para 100 dimensiones, se alcanza el óptimo, lo que sugiere que a esta cantidad de características se logra capturar la información más importante de los datos sin saturar el modelo con ruido.
+En el siguiente análisis se estudia el impacto que tiene en el MSE la reducción de la dimensionalidad, de donde se observa un mínimo local para 20 dimensiones. Esto se asocia a que al reducir las dimensiones, eliminamos ruido y características menos relevantes que podrían dificultar la identificación de patrones en el kNN. Esto permite que kNN funcione de manera más eficiente, ya que la distancia entre puntos es más fácil de calcular y más representativa. Al aumentar el número de dimensiones el MSE empeora inicialmente porque el modelo empieza a incluir características irrelevantes o ruidosas. A partir de 60 dimensiones el MSE vuelve a disminuir porque, al aumentar las dimensiones, el modelo empieza a recuperar características informativas y relevantes. Para 100 dimensiones, se alcanza el óptimo, lo que sugiere que a esta cantidad de características se logra capturar la información más importante de los datos sin saturar el modelo con ruido.
 <p align="center">
 <img width="424" alt="image" src="https://github.com/user-attachments/assets/7cf404a9-3ebb-4d4e-becd-893b23470963" />
 </p>
+
 #### 4.2.3 Bert
 
-Para Bert como se ha explicado se trabajará con 10000 recetas por un motivo principalmente computacional. El tamaño de la matriz de embeddings crece con el número de ejemplos, lo que impacta directamente en el consumo de memoria RAM y en el tiempo de entrenamiento del modelo. La dimensión de 768 viene de que la salida final de cada texto procesado proviene de la última capa oculta de la red, que tiene un tamaño fijo de 768 dimensiones para cada token en el caso de BERT-base.
+Para BERT, tal y como se ha explicado, se trabajará con 10,000 recetas por un motivo principalmente computacional. El tamaño de la matriz de _embeddings_ crece con el número de ejemplos, lo que impacta directamente en el consumo de memoria RAM y en el tiempo de entrenamiento del modelo. La dimensión de 768 viene de que la salida final de cada texto procesado proviene de la última capa oculta de la red, que tiene un tamaño fijo de 768 dimensiones para cada token en el caso de BERT-base.
 
 ##### 4.2.3.1 Random Forest
 
 Al igual que se ha hecho antes se aplica random forest con 50 árboles de decisión para poder hacer un análisis inicial:
-
+<p align="center">
 <img width="128" alt="image" src="https://github.com/user-attachments/assets/1117bf13-c6aa-4d79-87c3-df812d3f62ea" />
+</p>
 
-Los peores resultados de Random Forest al aplicar directamente los embeddings de BERT en comparación con TF-IDF y Word2Vec pueden justificarse por varias razones técnicas y características propias de los embeddings de BERT:
+Los peores resultados de _Random Forest_ al aplicar directamente los embeddings de BERT en comparación con TF-IDF y Word2Vec pueden justificarse por varias razones técnicas y características propias de los embeddings de BERT:
 
 **1-** Los embeddings de BERT tienen una dimensión fija alta (768 dimensiones), que es mucho mayor en comparación con las representaciones de TF-IDF o Word2Vec. Esta alta dimensionalidad puede generar ruido y dificultar que Random Forest capture patrones relevantes, ya que este modelo no maneja bien espacios de características muy grandes sin una reducción previa de dimensionalidad.Esta hipotesis se confirma si reducimos a 500 dimensiones con selectKbest donde se observa que el MSE mejora ligeramente:
 
+<p align="center">
 <img width="125" alt="image" src="https://github.com/user-attachments/assets/bf1a28cf-97be-410c-859b-949a3305fd1f" />
+</p>
 
 **2-** BERT embeddings capturan información contextual y compleja de las palabras en el texto. Estas representaciones son densas y altamente correlacionadas, lo cual no se adapta bien a los algoritmos de Random Forest.
 
