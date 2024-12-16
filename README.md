@@ -133,16 +133,30 @@ Para verificar la calidad y las propiedades de los embeddings generados por BERT
 <img width="305" alt="image" src="https://github.com/user-attachments/assets/0cc92551-1ea5-4884-a0de-d29ab97a2a0b" />
 
 ## 4. Entrenamiento y evaluación
+A continuación se van a entrenar y evaluar modelos de regresión utilizando distintas estrategias de aprendizaje automático.
+
 ### 4.1. Redes neuronales con PyTorch
+En este apartado se van a entrenar y evaluar distintas configuraciones de red reuronal, en las que variarán distintos hiperparámetros como el número de épocas, la tamaño de batch y la tasa de aprendizaje. También se mostrará el efecto en los resultados de aumentar el número de capas de la red.
+Se han realizado las siguientes comparaciones:
 
-### 4.1. Técnicas de regresión de la librería Scikit-learn
+- 
 
+#### 4.1.1 TF-IDF
+
+#### 4.2.2 Word2vec
+
+#### 4.2.3 Bert
+
+
+
+
+### 4.2. Técnicas de regresión de la librería Scikit-learn
 En este punto del proyecto, nos enfocamos en el entrenamiento y evaluación de modelos de regresión utilizando las representaciones vectoriales previamente comentadas. Los modelos seleccionados para esta tarea son Random Forest y k-Nearest Neighbors (kNN), los cuales serán evaluados sobre tres tipos de representaciones vectoriales de los documentos: TF-IDF, Word2Vec y BERT.
 
 Estos modelos de regresión, Random Forest y kNN, se entrenarán con las tres representaciones mencionadas para evaluar su rendimiento en la predicción de las valoraciones de recetas. A través de esta experimentación, buscaremos identificar qué tipo de representación vectorial y qué modelo ofrecen un mejor rendimiento en esta tarea de regresión.
-#### 4.1.1 TF-IDF
-##### 4.1.1.1 Random Forest
 
+#### 4.2.1 TF-IDF
+##### 4.2.1.1 Random Forest
 En un primer intento de aplicar el regresor random Forest en el notebook "RandomForest-TF-IDF_1.ipynb" con 50 árboles de decisión; para preparar los datos de entrenamiento y test se decide rellenar los datos faltantes del rating con la media, que es una técnica habitual. Se selecciona un subconjunto más pequeño de las muestras de entrenamiento. 1000 recetas se utilizan para entrenar el modelo, lo que es útil cuando se quiere acelerar el proceso de entrenamiento ya que los recursos computacionales son limitados.
 
 La matriz TF-IDF es costosa computacionalmente para un regresor como Random FOrest por lo que se decide reducir dimensionalidad para entrenar el modelo. Se utiliza el método SelectKbest con f_regression que selecciona las mejores características del conjunto de datos basado en un test estadístico que mide la relación entre las características y el target (rating). Se ha establecido que el número de componentes a conservar es 500. Este número fue elegido principalmente por razones de eficiencia computacional. Reducir la dimensionalidad ayuda a que el modelo cargue más rápido y se entrene de manera más eficiente. Además al usar todas las características se observa una ligera empeora del MSE por lo que se puede asegurar que hay muchas componentes ruidosas.
@@ -193,7 +207,7 @@ Este análisis permite ver que aunque aumentes el tamaño del conjunto de entren
 
 <img src="https://github.com/user-attachments/assets/d1dfba4f-522e-4abe-8e2a-fddeffc0be66" width="425" alt="image">
 
-##### 4.1.1.2 kNN
+##### 4.2.1.2 kNN
 
 Al observar los resultados obtenidos de Random Forest, como el MSE alto tanto en el conjunto de entrenamiento como en el de prueba (en particular, el MSE de prueba no mejora significativamente con el tamaño del conjunto de entrenamiento), es claro que el modelo no está capturando bien las relaciones subyacentes entre las características y la variable objetivo. A pesar de los esfuerzos por optimizar los hiperparámetros (a través de GridSearchCV), el modelo sigue mostrando un rendimiento limitado. Este comportamiento puede indicar que Random Forest no es adecuado para la naturaleza de los datos en cuestión, o que las características seleccionadas no son las más representativas. Se decide probar con el regresor kNN que es un modelo no paramétrico que no hace suposiciones sobre la forma de la relación entre las características y la variable objetivo. A diferencia de Random Forest, que intenta aprender patrones complejos mediante árboles de decisión, kNN utiliza una metodología simple basada en la proximidad de los puntos de datos, lo que puede ser útil cuando los datos tienen una estructura no tan compleja.
 
@@ -218,9 +232,9 @@ Que el puntaje de prueba comience en -0.1 es preocupante porque sugiere que el m
 
 <img width="443" alt="image" src="https://github.com/user-attachments/assets/e9452525-21b6-45a0-8a9b-c318ad52cfd2" />
 
-#### 4.1.2 Word2vec
+#### 4.2.2 Word2vec
 
-##### 4.1.2.1 Random Forest
+##### 4.2.2.1 Random Forest
 
 Para los análisis se hará uso de un torch size de (20130,100) la dimensionalidad de 100 se justificó previamente pero dimensionalidad 100 permite un equilibrio entre eficiencia y rendimiento, además que para el número de recetas y longitud de las recetas una dimensionalidad de 100 es suficiente, se hará una prueba con 200 más adelante para confirmar esto.
 
@@ -251,7 +265,7 @@ Por último se observa la Distribución de las predicciones vs. valores reales
 
 <img src="https://github.com/user-attachments/assets/2933fa04-3afd-42e4-a3e7-c7118dce09d4" width="425" alt="image" >
 
-##### 4.1.2.2 Regresor kNN
+##### 4.2.2.2 Regresor kNN
 
 En cuanto a los resultados para el regresor kNN utilizando como representación vectorial word2vec se observa una mejora en términos de MSE respecto al regresor kNN para la representación vectorial de TF-IDF.
 
@@ -272,11 +286,11 @@ En un siguiente análisis se estudia el impacto que tiene en el MSE la reducció
 
 <img width="424" alt="image" src="https://github.com/user-attachments/assets/7cf404a9-3ebb-4d4e-becd-893b23470963" />
 
-#### 4.1.3 Bert
+#### 4.2.3 Bert
 
 Para Bert como se ha explicado se trabajará con 10000 recetas por un motivo principalmente computacional. El tamaño de la matriz de embeddings crece con el número de ejemplos, lo que impacta directamente en el consumo de memoria RAM y en el tiempo de entrenamiento del modelo. La dimensión de 768 viene de que la salida final de cada texto procesado proviene de la última capa oculta de la red, que tiene un tamaño fijo de 768 dimensiones para cada token en el caso de BERT-base.
 
-##### 4.1.3.1 Random Forest
+##### 4.2.3.1 Random Forest
 
 Al igual que se ha hecho antes se aplica random forest con 50 árboles de decisión para poder hacer un análisis inicial:
 
