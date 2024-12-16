@@ -351,6 +351,61 @@ Los peores resultados de Random Forest al aplicar directamente los embeddings de
 ## 5. Comparación de lo obtenido con el _fine-tuning_ de un modelo preentrenado con _Hugging Face_
 
 
+## 6. Extensión
+
+## 6.1 Técnicas de NLP
+
+El análisis de bigramas es una técnica importante para capturar relaciones entre palabras consecutivas en un texto, que puede ser útil para mejorar el rendimiento de los modelos de aprendizaje automático al incluir información contextual.
+
+La simple tokenización de palabras individuales no captura relaciones entre términos consecutivos que pueden ser importantes para entender el significado del texto. Antes de extraer bigramas, las direcciones de las recetas (clean_directions) fueron limpiadas y preprocesadas para eliminar caracteres no deseados y normalizar el texto.
+
+ Se utilizó CountVectorizer de Scikit-learn para convertir el texto en una representación basada en bigramas, siguiendo estos criterios:
+
+### 6.1.1 Bigramas
+
+1.   Rango de N-gramas: Se seleccionaron únicamente bigramas (ngram_range=(2, 2)).
+2.   Frecuencia mínima y máxima: Para evitar características poco informativas:
+Se descartaron bigramas que aparecían en menos de 2 recetas (min_df=2).
+Se eliminaron bigramas que estaban presentes en más del 95% de las recetas (max_df=0.95).
+
+El texto vectorizado se convirtió en una matriz dispersa, donde cada columna representa un bigrama y cada fila corresponde a una receta. Tras aplicar esta técnica, se generaron un total de 122,998 bigramas únicos.
+
+Al inspeccionar la matriz de bigramas generada, se observa que las filas del conjunto de datos presentan valores de frecuencia igual a 0 para todos los bigramas. Esto significa que, para esas recetas específicas, ninguno de los bigramas seleccionados como características relevantes está presente. 
+
+### 6.1.2 Tesauros
+
+Otra técnica explorada en este trabajo fue el uso de tesauros para expandir el vocabulario del corpus. Un tesauro, como el proporcionado por WordNet en la librería NLTK de Python, permite obtener sinónimos de palabras con el fin de enriquecer el contenido textual y capturar mayor variabilidad en el lenguaje.
+
+La funcionalidad se implementó en dos pasos principales:
+
+1. Obtener sinónimos de palabras
+2. Reemplazo de palabras con sinónimos en el corpus
+
+Se observa que palabras comunes fueron sustituidas por sinónimos contextualmente apropiados, lo que potencialmente introduce mayor diversidad en los datos:
+
+<img width="257" alt="image" src="https://github.com/user-attachments/assets/d8416501-3820-4cbf-8734-49f7889de861" />
+
+Limitaciones: WordNet no tiene en cuenta el contexto completo en el que se usa una palabra, lo que puede ocasionar reemplazos semánticamente incorrectos. Aunque la técnica añade diversidad lingüística, puede no impactar significativamente en el rendimiento del modelo si los sinónimos introducidos no aportan información novedosa para la tarea.
+
+Para comparar el impacto del uso de sinónimos en el modelo de Random Forest, primero se debs entrenar dos modelos diferentes: uno con el conjunto de datos original (recipes_df) que se ha hecho en el apartado 4 y otro con el conjunto de datos con las direcciones expandidas (recipes_df['expanded_directions']). Esto permitirá ver si la inclusión de sinónimos mejora el rendimiento del modelo.
+
+Se estudia en un inicio para random forest a partir de la representación vectorial de TF-IDF y se obtiene el siguiente resultado:
+
+<img width="160" alt="image" src="https://github.com/user-attachments/assets/fc3b6d45-d102-4304-a327-d2c199fb4c10" />
+
+Se observa que los resultados en términos de MSE son practicamente iguales que sin usar la técnica de tesauros por lo que esto puede ser debido a que:
+
+1. Modelo Random Forest no Captura Relaciones Semánticas de Forma Directa
+2. El Uso de Sinónimos No Aporta Información Relevante
+3. Posible Redundancia o Ruido Introducido por los Sinónimos
+
+Se aplica representación vectorial al regresor kNN donde si que se observa una ligera mejora en términos de MSE. kNN es un modelo basado en la cercanía de puntos en el espacio de características. Esto significa que, cuando se agregan sinónimos, las características del texto ( las direcciones de las recetas) se expanden, lo que puede aumentar la variabilidad y la separación entre puntos en el espacio de características. Al tener más variabilidad, los puntos pueden estar más separados y esto puede mejorar el rendimiento del modelo, especialmente si las recetas son similares en contexto pero varían en el vocabulario.
+
+<img width="482" alt="image" src="https://github.com/user-attachments/assets/761a84ca-4c64-452c-bbaf-b36ffaf33243" />
+
+## 6.2 Summarizer
+
+
 
 
 
