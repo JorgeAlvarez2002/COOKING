@@ -116,7 +116,7 @@ Se puede observar que las dimesiones de la matriz son 20,130x3,924, correpondien
 
 ### 3.1. Word2Vec
 Se han realizado distintos análisis a partir de los embeddings extraídos con Word2Vec. En primer lugar, se ha realizado una reducción de la dimensionalidad de los datos.
-Un tamaño de embedding de 100 es razonable y suficiente para el número de recetas que tenemos (20,130) debido a que con 20,130 recetas, un embedding de tamaño 100 representa 2,013,000 parámetros (si consideramos un modelo simple con una capa de entrada que procesa estos embeddings). Esto es manejable para entrenar modelos estándar como Random Forest o k-NN sin riesgo de sobreajuste. Además un embedding más grande de 300 o 768 como Bert podría ser innecesario y añadir ruido en lugar de mejorar la capacidad de generalización.
+Un tamaño de embedding de 100 es razonable y suficiente para el número de recetas que tenemos (20,130) debido a que con 20,130 recetas, un _embedding_ de tamaño 100 representa 2,013,000 parámetros (si consideramos un modelo simple con una capa de entrada que procesa estos _embeddings_). Esto es manejable para entrenar modelos estándar como Random Forest o k-NN sin riesgo de sobreajuste. Además un _embedding_ más grande de 300 o 768 como Bert podría ser innecesario y añadir ruido en lugar de mejorar la capacidad de generalización.
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/91fc2147-0450-4db8-8491-88c3c0067eba" alt="imagen" width="700">
@@ -133,7 +133,6 @@ Por otro lado y siguiendo con la característica observada anteriormente, buscam
 Por último, se ha calculado la similitud coseno entre recetas a partir de los _embeddings_ extraídos. Esto se ha realizado para las 10 primeras recetas, comparándolas de 2 en 2 (la primera con la segunda, la tercera con la cuarta...):
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/80080646-f6d1-4e31-8026-d1aa9a36f9ca" alt="imagen" width="800">
 <img src="https://github.com/user-attachments/assets/44627365-4ea8-46f4-9184-be13ca234709" alt="imagen" width="800">
 </p>
 
