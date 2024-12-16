@@ -405,7 +405,7 @@ Se ha intentado implementar para la totalidad de los datos pero ha sido muy dif�
 
 Al comenzar el proyecto, en el punto 1, ya se adelantaba la poca correlación que hay entre las variables de salida y las de entrada, lo que complica la obtención de buenos resultados. Además, los extensos tiempos de ejecución han complicado la tarea debido a las limitaciones del propio Google Collab. Para intentar mitigar esto último, se cambió del modelo BERT al modelo DistilBERT, el cual es una versión reducida del primero: es más ligero y ocupa menos memoria. De esta forma, se ha probado con distinta cantidad de recetas:
 
-<img width="125" alt="image" src="https://github.com/user-attachments/assets/413e8ba7-3992-476d-9fbb-08a2acebf15e"/>
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/413e8ba7-3992-476d-9fbb-08a2acebf15e"/>
 
 
 ## 6. Extensión
