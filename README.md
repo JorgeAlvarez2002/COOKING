@@ -188,13 +188,13 @@ Por último, se observa que el aumento del número de épocas con las que se ent
 </p>
 
 #### 4.1.2 Word2vec
-A continuación se repite el análisis anterior, esta vez para los embeddings extraídos con el algoritmo Word2Vec. En esta primera comparación se observa que la mejora que se produce en los resultados al aumentar el número de épocas y disminuir la tasa de aprendizaje es bastante mayor que en el caso anterior. En consecuencia, también mejoran los resultados para el "caso mejor", que esta vez son ligeramente peores que los obtenidos al reducir la tasa de aprendizaje. Esto puede deberse a la naturaleza de los embeddings, pues el ajuste que permite una tasa de aprendizaje baja puede ser beneficiosa por aprovechar mejor las relaciones semánticas que representan. Sin embargo, esto puede provocar que al aumentar el número de épocas se produzca un cierto sobreajuste, empeorando las tasas de error.
+A continuación se repite el análisis anterior, esta vez para los embeddings extraídos con el algoritmo Word2Vec. En esta primera comparación se observa que la mejora que se produce en los resultados al aumentar el número de épocas y disminuir la tasa de aprendizaje es bastante mayor que en el caso anterior. En consecuencia, también mejoran los resultados para el "caso mejor", que esta vez son ligeramente peores que los obtenidos al reducir la tasa de aprendizaje. Esto puede deberse a la naturaleza de los _embeddings_, pues el ajuste que permite una tasa de aprendizaje baja puede ser beneficiosa por aprovechar mejor las relaciones semánticas que representan. Sin embargo, esto puede provocar que al aumentar el número de épocas se produzca un cierto sobreajuste, empeorando las tasas de error.
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/a0d95d94-607a-4ad0-a0fc-376a480cfa5c" alt="imagen" width="400">
 </p>
 
-En cuanto al aumento del número de capas, como ya se venía adelantando, los valores de MSE y R^2 son mejores de forma global. Esto puede explicarse de nuevo con el formato de los embeddings extraídos con Word2Vec, los cuales permiten un apredizaje más profundo, beneficiándose por tanto de redes con un mayor número de capas. Aún así, siguen teniendo el mismo comportamiento que en el caso TF-IDF: aumentar dos capas el número de capas de la red supone una mejora considerable para el "caso peor", sin embargo, con respecto al "caso mejor" se mantiene constante la tasa de error.
+En cuanto al aumento del número de capas, como ya se venía adelantando, los valores de MSE y R^2 son mejores de forma global. Esto puede explicarse de nuevo con el formato de los _embeddings_ extraídos con Word2Vec, los cuales permiten un apredizaje más profundo, beneficiándose por tanto de redes con un mayor número de capas. Aún así, siguen teniendo el mismo comportamiento que en el caso TF-IDF: aumentar dos capas el número de capas de la red supone una mejora considerable para el "caso peor", sin embargo, con respecto al "caso mejor" se mantiene constante la tasa de error.
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/351e3d66-7a8e-4a97-bddc-02f0a3ab4e1f" alt="imagen" width="400">
@@ -214,7 +214,7 @@ Como era de esperar, dada la mayor calidad y complejidad de los embeddings, los 
 <img src="https://github.com/user-attachments/assets/09853cc1-12ba-4100-b597-dcc63286f61a" alt="imagen" width="400">
 </p>
 
-Por otro lado, de igual manera que para el resto de embeddings, el aumento del número de capas solo tiene efecto para el "caso peor", pues en el "caso mejor" ya se está aprovechando la información de los embeddings con la configuración optimizada de la red.
+Por otro lado, de igual manera que para el resto de _embeddings_, el aumento del número de capas solo tiene efecto para el "caso peor", pues en el "caso mejor" ya se está aprovechando la información de los embeddings con la configuración optimizada de la red.
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/47e3c1bd-2ac3-4d44-b547-90cb85cdb3a9" alt="imagen" width="400">
