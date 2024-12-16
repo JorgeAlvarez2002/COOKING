@@ -157,7 +157,7 @@ A continuación se van a entrenar y evaluar modelos de regresión utilizando dis
 Para la comparación de las distintas técnicas y configuraciones implementadas, se va a calcular el MSE y el R^2. Por un lado, el MSE (_Mean Squared Error_) representa la magnitud promedio de los errores al cuadrado, siendo los errores en este caso las diferencias entre los valores reales y las predicciones del modelo. Por otro lado, el R^2 es el coeficiente de determinación, y mide qué proporción de la variación total es explicada por el modelo.
 
 ### 4.1. Redes neuronales con PyTorch
-En este apartado se van a entrenar y evaluar distintas configuraciones de red reuronal, en las que variarán distintos hiperparámetros como el número de épocas, la tamaño de batch y la tasa de aprendizaje. También se mostrará el efecto en los resultados de aumentar el número de capas de la red.
+En este apartado se van a entrenar y evaluar distintas configuraciones de red reuronal, en las que se variarán distintos hiperparámetros como el número de épocas, la tamaño de batch y la tasa de aprendizaje. También se mostrará el efecto en los resultados de aumentar el número de capas de la red.
 Se han realizado las siguientes comparaciones:
 
 - "Caso peor": se configura un número de épocas bajo (_epochs = 5_), un tamaño de batch grande (_batch_size = 128_) y una tasa de aprendizaje elevada (_lr = 0.1_).
