@@ -434,8 +434,8 @@ La simple tokenización de palabras individuales no captura relaciones entre té
 
 1.   _Rango de N-gramas_: Se seleccionaron únicamente bigramas (ngram_range=(2, 2)).
 2.   _Frecuencia mínima y máxima_: Para evitar características poco informativas:
-Se descartaron bigramas que aparecían en menos de 2 recetas (min_df=2).
-Se eliminaron bigramas que estaban presentes en más del 95% de las recetas (max_df=0.95).
+- Se descartaron bigramas que aparecían en menos de 2 recetas (min_df=2).
+- Se eliminaron bigramas que estaban presentes en más del 95% de las recetas (max_df=0.95).
 
 El texto vectorizado se convirtió en una matriz dispersa, donde cada columna representa un bigrama y cada fila corresponde a una receta. Tras aplicar esta técnica, se generaron un total de 122,998 bigramas únicos.
 
@@ -452,29 +452,35 @@ La funcionalidad se implementó en dos pasos principales:
 
 Se observa que palabras comunes fueron sustituidas por sinónimos contextualmente apropiados, lo que potencialmente introduce mayor diversidad en los datos:
 
+<p align="center">
 <img width="257" alt="image" src="https://github.com/user-attachments/assets/d8416501-3820-4cbf-8734-49f7889de861" />
+</p>
 
-Limitaciones: WordNet no tiene en cuenta el contexto completo en el que se usa una palabra, lo que puede ocasionar reemplazos semánticamente incorrectos. Aunque la técnica añade diversidad lingüística, puede no impactar significativamente en el rendimiento del modelo si los sinónimos introducidos no aportan información novedosa para la tarea.
+**Limitaciones**: WordNet no tiene en cuenta el contexto completo en el que se usa una palabra, lo que puede ocasionar reemplazos semánticamente incorrectos. Aunque la técnica añade diversidad lingüística, puede no impactar significativamente en el rendimiento del modelo si los sinónimos introducidos no aportan información novedosa para la tarea.
 
-Para comparar el impacto del uso de sinónimos en el modelo de Random Forest, primero se debs entrenar dos modelos diferentes: uno con el conjunto de datos original (recipes_df) que se ha hecho en el apartado 4 y otro con el conjunto de datos con las direcciones expandidas (recipes_df['expanded_directions']). Esto permitirá ver si la inclusión de sinónimos mejora el rendimiento del modelo.
+Para comparar el impacto del uso de sinónimos en el modelo de _Random Forest_, primero se debs entrenar dos modelos diferentes: uno con el conjunto de datos original (recipes_df) que se ha hecho en el apartado 4 y otro con el conjunto de datos con las direcciones expandidas (recipes_df['expanded_directions']). Esto permitirá ver si la inclusión de sinónimos mejora el rendimiento del modelo.
 
 Se estudia en un inicio para random forest a partir de la representación vectorial de TF-IDF y se obtiene el siguiente resultado:
 
+<p align="center">
 <img width="160" alt="image" src="https://github.com/user-attachments/assets/fc3b6d45-d102-4304-a327-d2c199fb4c10" />
+</p>
 
-Se observa que los resultados en términos de MSE son practicamente iguales que sin usar la técnica de tesauros por lo que esto puede ser debido a que:
+Se observa que los resultados en términos de MSE son prácticamente iguales que en el caso en el que no se usa la técnica de tesauros. Esto puede ser debido a que:
 
 1. Modelo Random Forest no Captura Relaciones Semánticas de Forma Directa
 2. El Uso de Sinónimos No Aporta Información Relevante
 3. Posible Redundancia o Ruido Introducido por los Sinónimos
 
-Se aplica representación vectorial al regresor kNN donde si que se observa una ligera mejora en términos de MSE. kNN es un modelo basado en la cercanía de puntos en el espacio de características. Esto significa que, cuando se agregan sinónimos, las características del texto ( las direcciones de las recetas) se expanden, lo que puede aumentar la variabilidad y la separación entre puntos en el espacio de características. Al tener más variabilidad, los puntos pueden estar más separados y esto puede mejorar el rendimiento del modelo, especialmente si las recetas son similares en contexto pero varían en el vocabulario.
+Se aplica representación vectorial al regresor kNN donde sí que se observa una ligera mejora en términos de MSE. kNN es un modelo basado en la cercanía de puntos en el espacio de características. Esto significa que, cuando se agregan sinónimos, las características del texto (las direcciones de las recetas) se expanden, lo que puede aumentar la variabilidad y la separación entre puntos en el espacio de características. Al tener más variabilidad, los puntos pueden estar más separados y esto puede mejorar el rendimiento del modelo, especialmente si las recetas son similares en contexto pero varían en el vocabulario.
 
+<p align="center">
 <img width="482" alt="image" src="https://github.com/user-attachments/assets/761a84ca-4c64-452c-bbaf-b36ffaf33243" />
+</p>
 
 ## 6.2 Summarizer
 
-se ha utilizado un modelo preentrenado de Hugging Face en "EXTENSIÓN B.ipynb" para realizar el resumen automático de las direcciones de las recetas. El modelo seleccionado es el Google Pegasus XSum, que está diseñado específicamente para tareas de resumen de textos. El pipeline de Hugging Face se utiliza para integrar el modelo en el flujo de trabajo.
+Se ha utilizado un modelo preentrenado de _Hugging Face_ en "EXTENSIÓN B.ipynb" para realizar el resumen automático de las direcciones de las recetas. El modelo seleccionado es el Google Pegasus XSum, que está diseñado específicamente para tareas de resumen de textos. El pipeline de _Hugging Face_ se utiliza para integrar el modelo en el flujo de trabajo.
 
 Para la tarea de resumen, se ha configurado el modelo con los siguientes parámetros:
 
@@ -482,7 +488,7 @@ Para la tarea de resumen, se ha configurado el modelo con los siguientes paráme
 2. min_length: 5 tokens. Establece la longitud mínima del resumen, evitando que el modelo genere resúmenes extremadamente cortos o vacíos.
 3. do_sample=False: Se desactiva la opción de muestreo para que el modelo genere siempre el resumen más probable, en lugar de generar múltiples resúmenes con mayor variabilidad.
 
-Se aplicó el modelo de resumen sobre la columna 'directions' del conjunto de datos de recetas. Para cada receta, el modelo generó un resumen de las instrucciones, proporcionando una versión más breve pero coherente de los pasos a seguir. Se incluyen los siguientes ejemplos:
+Se aplicó el modelo de resumen sobre la columna _'directions'_ del conjunto de datos de recetas. Para cada receta, el modelo generó un resumen de las instrucciones, proporcionando una versión más breve pero coherente de los pasos a seguir. Se incluyen los siguientes ejemplos:
 
 <img width="290" alt="image" src="https://github.com/user-attachments/assets/ae858e91-b422-4f76-954b-9664dd1a5cd4" />
 
