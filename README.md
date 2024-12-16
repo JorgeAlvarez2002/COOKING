@@ -102,9 +102,9 @@ A continuación, se va a realizar la vectorización de la  variable _directions_
 ### 3.1. TF-IDF
 En este tipo de vectorización, se asignan valores más altos a aquellos términos que son muy frecuentes en una receta en particular y muy poco en otras recetas. De esta forma, se penaliza a las palabras que aparecen en muchas recetas, lo cual ocurre con las palabras básicas.
 
-La representación TF-IDF se generó a partir del texto preprocesado (directions y description) de cada receta. Se utilizó la clase TfidfVectorizer de sklearn, configurada con los siguientes parámetros:
-- min_df=`: Se descartan términos que aparecen en menos de 5 documentos.
-- max_df=0.8: Se eliminan términos que aparecen en más del 80% de los documentos.
+Para la representación TF-IDF se ha utilizado la clase _TfidfVectorizer_ de _sklearn_, configurada con los siguientes parámetros:
+- _min_df = 5_: Se descartan términos que aparecen en menos de 5 documentos.
+- _max_df = 0.8_: Se eliminan términos que aparecen en más del 80% de los documentos.
 
 De esta forma, se obteniene una matriz que tiene la siguiente forma:
 <p align="center">
