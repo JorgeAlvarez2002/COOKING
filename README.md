@@ -199,7 +199,9 @@ A continuación se repite el análisis anterior, esta vez para los embeddings ex
 
 En cuanto al aumento del número de capas, como ya se venía adelantando, los valores de MSE y R^2 son mejores de forma global. Esto puede explicarse de nuevo con el formato de los embeddings extraídos con Word2Vec, los cuales permiten un apredizaje más profundo, beneficiándose por tanto de redes con un mayor número de capas. Aún así, siguen teniendo el mismo comportamiento que en el caso TF-IDF: aumentar dos capas el número de capas de la red supone una mejora considerable para el "caso peor", sin embargo, con respecto al "caso mejor" se mantiene constante la tasa de error.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/351e3d66-7a8e-4a97-bddc-02f0a3ab4e1f" alt="imagen" width="400">
+</p>
 
 Aunque lo esperado sería que los resultados mejoraran respecto al caso TF-IDF igual que ocurría en las dos comparaciones anteriores, en este caso resulta perjudicial el aumentar tanto el número de épocas en el entrenamiento de la red. A diferencia de TF-IDF, los embeddings Word2Vec contienen relaciones semánticas previamente aprendidas, por lo que entrenar el modelo durante demasiadas épocas provoca un sobreajuste que lleva a su vez a una disminución de la calidad de las predicciones.
 
@@ -241,28 +243,30 @@ La matriz TF-IDF es costosa computacionalmente para un regresor como Random Fore
 Para justificar este primer analisis se utilizan componentes escogidas aleatoriamente y a través del método SelectKbest obteniendose los siguientes resultados:
 
 Los resultados evidencian que SelectKBest mejora el desempeño del modelo, al elegir características que tienen una mayor correlación con la variable objetivo, en comparación con la selección aleatoria de características. Esto refuerza la idea de que, en problemas supervisados (predicción del rating de recetas), es más efectivo utilizar técnicas de selección de características que consideren la relación con el target, como SelectKBest, en lugar de una selección aleatoria que no aprovecha esa información.
-
+<p align="center">
 <img src="https://github.com/user-attachments/assets/5010445f-9505-4778-900e-195b15938865" alt="imagen" width="400">
-
+</p>
 Este análisis permite argumentar que la reducción de dimensionalidad supervisada (como SelectKBest) proporciona mejores resultados que una reducción aleatoria de características. Con el uso de validación cruzada, se ha obtenido una evaluación más precisa del rendimiento del modelo, con un MSE de 1.4202, que es ligeramente mejor que los resultados iniciales obtenidos con SelectKBest sin validación cruzada. Esto valida la robustez de tu modelo y asegura que la selección de características es adecuada para predecir el rating de las recetas.
 
 El modelo ha identificado ciertas palabras clave que impactan las calificaciones de las recetas, pero es importante reconocer que el modelo no entiende el significado semántico de las palabras, sino que simplemente las evalúa por su capacidad para predecir la variable objetivo (rating). Además, al ser un modelo no lineal como Random Forest, las características con mayor importancia no siempre corresponden a las palabras que intuitivamente pensaríamos que deberían tener más peso en el contexto de una receta.
-
+<p align="center">
 <img src="https://github.com/user-attachments/assets/cd20ad70-1bc2-4eda-bea6-1099e468e983" alt="imagen" width="600">
-
+</p>
 Se realiza también un análisis de los valores predichos vs reales, donde las predicciones si fueran perfectas se colocarían sobre la línea roja. Los malos resultados se asocian a los ratings se distribuyeb de manera no uniforme como observaremos más abajo, hay muchas recetas que poseen un rating de 3.5 y 4.5 y por ello el modelo encuentra las mayores dificultades para predecir ratings extremos (0 o 5):
-
+<p align="center">
 <img src="https://github.com/user-attachments/assets/754d0419-d1f0-4785-88f1-fd81d612c40f" alt="imagen" width="600">
- 
+ </p>
 Este análisis se confirma si se observa como se distribuyen las predicciones vs los valores reales:
-
+<p align="center">
 <img src="https://github.com/user-attachments/assets/b6e2adbb-a0ca-44c0-8672-87e365930b91" alt="imagen" width="600">
-
+</p>
 Para mejorar el rendimiento del modelo RandomForestRegressor en "RandomForest-TF-IDF_2.ipynb", se implementa una búsqueda exhaustiva de hiperparámetros utilizando GridSearchCV. Este proceso permite probar diferentes combinaciones de parámetros y seleccionar los que mejor optimicen la puntuación de validación cruzada (medida de rendimiento general del modelo). La búsqueda de hiperparámetros se realizó utilizando un conjunto de entrenamiento reducido (1000 recetas).
 
  Se probaron 50, 100 y 150 árboles de decisión, se probaron distintas profundidades de 10, 20, 30 y none. También se probó el número mínimo de muestras requerido para dividir un nodo. Se probaron 2, 5 y 10 muestras. Tras ejecutar GridSearchCV con una validación cruzada de 3 pliegues (cv=3), los mejores parámetros encontrados fueron los siguientes:
-
+ 
+<p align="center">
  <img src="https://github.com/user-attachments/assets/bc61e60b-03cd-43ca-8d59-ae4aa22bf8ed" alt="imagen" width="400">
+</p>
 
 La mejor puntuación de validación cruzada obtenida fue 0.0822, lo que indica que el modelo optimizado tiene un rendimiento moderado en términos de la varianza explicada durante la validación cruzada. Aunque este valor no es alto, refleja un modelo que generaliza razonablemente bien.
 
@@ -271,9 +275,9 @@ Se realiza un análisis para ver como varían el MSE y el R² para diferentes va
 Se observa como a partir de 5000 recetas el modelo podría volverse más sensible a los datos de entrenamiento, capturando detalles no representativos o ruido. Esto puede hacer que el modelo generalice peor en el conjunto de prueba y, como resultado, el MSE empeore a medida que aumenta el tamaño del conjunto de entrenamiento.
 
 Aunque n_estimators=150 podría ofrecer más árboles, esto no necesariamente mejora el rendimiento del modelo. Si el modelo ya ha alcanzado un rendimiento óptimo con un número menor de árboles, aumentar n_estimators más allá de ese punto puede llevar a un sobrecosto computacional sin mejorar la predicción. El aumento en R² podría indicar que el modelo es capaz de explicar más de la variabilidad de los datos en general
-
+<p align="center">
 ![image](https://github.com/user-attachments/assets/874701e6-7aed-4546-8a24-7163be73bc5a)
-
+</p>
 En conclusión, este comportamiento de empeoramiento del MSE podría indicar que el modelo está empezando a sobreajustarse al conjunto de entrenamiento a medida que aumentas el tamaño de los datos.
 
 Con la gráfica de la curva de aprendizaje que se genera, se observa que el MSE de entrenamiento disminuye conforme aumenta el tamaño del conjunto de entrenamiento. Sin embargo, este no llega a a acercarse a un valor muy bajo lo cual podría indicar que la capacidad del modelo es limitada.
