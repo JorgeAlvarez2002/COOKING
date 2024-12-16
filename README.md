@@ -206,7 +206,7 @@ Aunque lo esperado sería que los resultados mejoraran respecto al caso TF-IDF i
 <img src="https://github.com/user-attachments/assets/d4ae3373-5adc-4108-b525-375f291328b9" alt="imagen" width="400">
 </p>
 
-#### 4.1.3 Bert
+#### 4.1.3 BERT
 Por último, se obtienen los resultados correspondientes al entrenamiento y evaluación de embeddings extraídos con BERT. 
 Como era de esperar, dada la mayor calidad y complejidad de los embeddings, los resultados obtenidos de forma general son mejores que para los dos casos anteriores. En esta primera comparación, se observa que el "caso peor" y el "caso mejor" presentan valores similares, y únicamente un menor tamaño de batch y tasa de apredizaje mejoran los resultados ligeramente. Esto es un indicador de la calidad de los embeddings de BERT, pues como se puede apreciar, el modelo no depende tanto de los hiperparámetros con los que se configure la red.
 
