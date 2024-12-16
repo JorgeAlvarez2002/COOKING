@@ -284,13 +284,13 @@ Al igual que se ha hecho antes se aplica random forest con 50 árboles de decisi
 
 Los peores resultados de Random Forest al aplicar directamente los embeddings de BERT en comparación con TF-IDF y Word2Vec pueden justificarse por varias razones técnicas y características propias de los embeddings de BERT:
 
-1-Los embeddings de BERT tienen una dimensión fija alta (768 dimensiones), que es mucho mayor en comparación con las representaciones de TF-IDF o Word2Vec. Esta alta dimensionalidad puede generar ruido y dificultar que Random Forest capture patrones relevantes, ya que este modelo no maneja bien espacios de características muy grandes sin una reducción previa de dimensionalidad.Esta hipotesis se confirma si reducimos a 500 dimensiones con selectKbest donde se observa que el MSE mejora ligeramente:
+**1-** Los embeddings de BERT tienen una dimensión fija alta (768 dimensiones), que es mucho mayor en comparación con las representaciones de TF-IDF o Word2Vec. Esta alta dimensionalidad puede generar ruido y dificultar que Random Forest capture patrones relevantes, ya que este modelo no maneja bien espacios de características muy grandes sin una reducción previa de dimensionalidad.Esta hipotesis se confirma si reducimos a 500 dimensiones con selectKbest donde se observa que el MSE mejora ligeramente:
 
 <img width="125" alt="image" src="https://github.com/user-attachments/assets/bf1a28cf-97be-410c-859b-949a3305fd1f" />
 
-2-BERT embeddings capturan información contextual y compleja de las palabras en el texto. Estas representaciones son densas y altamente correlacionadas, lo cual no se adapta bien a los algoritmos de Random Forest.
+**2-** BERT embeddings capturan información contextual y compleja de las palabras en el texto. Estas representaciones son densas y altamente correlacionadas, lo cual no se adapta bien a los algoritmos de Random Forest.
 
-3-BERT embeddings están diseñados para ser entrada de modelos lineales como redes neuronales que pueden manejar la alta dimensionalidad y las relaciones no lineales presentes en los datos.
+**3-** BERT embeddings están diseñados para ser entrada de modelos lineales como redes neuronales que pueden manejar la alta dimensionalidad y las relaciones no lineales presentes en los datos.
 
 
 
