@@ -274,7 +274,7 @@ Se observa como a partir de 5000 recetas el modelo podría volverse más sensibl
 Aunque _n_estimators=150_ podría ofrecer más árboles, esto no necesariamente mejora el rendimiento del modelo. Si el modelo ya ha alcanzado un rendimiento óptimo con un número menor de árboles, aumentar n_estimators más allá de ese punto puede llevar a un sobrecosto computacional sin mejorar la predicción. El aumento en R² podría indicar que el modelo es capaz de explicar más de la variabilidad de los datos en general
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/874701e6-7aed-4546-8a24-7163be73bc5a" width="425" alt="image">
+<img src="https://github.com/user-attachments/assets/874701e6-7aed-4546-8a24-7163be73bc5a" width="450" alt="image">
 </p>
 
 En conclusión, este comportamiento de empeoramiento del MSE podría indicar que el modelo está empezando a sobreajustarse al conjunto de entrenamiento a medida que aumentas el tamaño de los datos.
