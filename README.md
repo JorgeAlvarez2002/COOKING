@@ -275,44 +275,48 @@ Se realiza un análisis para ver como varían el MSE y el R² para diferentes va
 Se observa como a partir de 5000 recetas el modelo podría volverse más sensible a los datos de entrenamiento, capturando detalles no representativos o ruido. Esto puede hacer que el modelo generalice peor en el conjunto de prueba y, como resultado, el MSE empeore a medida que aumenta el tamaño del conjunto de entrenamiento.
 
 Aunque n_estimators=150 podría ofrecer más árboles, esto no necesariamente mejora el rendimiento del modelo. Si el modelo ya ha alcanzado un rendimiento óptimo con un número menor de árboles, aumentar n_estimators más allá de ese punto puede llevar a un sobrecosto computacional sin mejorar la predicción. El aumento en R² podría indicar que el modelo es capaz de explicar más de la variabilidad de los datos en general
-<p align="center">
+
 ![image](https://github.com/user-attachments/assets/874701e6-7aed-4546-8a24-7163be73bc5a)
-</p>
+
 En conclusión, este comportamiento de empeoramiento del MSE podría indicar que el modelo está empezando a sobreajustarse al conjunto de entrenamiento a medida que aumentas el tamaño de los datos.
 
 Con la gráfica de la curva de aprendizaje que se genera, se observa que el MSE de entrenamiento disminuye conforme aumenta el tamaño del conjunto de entrenamiento. Sin embargo, este no llega a a acercarse a un valor muy bajo lo cual podría indicar que la capacidad del modelo es limitada.
-
+<p align="center">
 <img src="https://github.com/user-attachments/assets/c6d3e36f-711d-4b43-801e-1be2c48513bd" alt="imagen" width="600">
-
+</p>
 Este análisis permite ver que aunque aumentes el tamaño del conjunto de entrenamiento, el modelo aún no ha logrado reducir suficientemente el MSE en el conjunto de prueba ni de entrenamiento. Si a continuación se observa el histograma que compara las predicciones vs valores reales para el mejor modelo obtenido tras el estudio previo de hiperparámetros se observa un ligero mejor ajuste de las predicciones:
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/d1dfba4f-522e-4abe-8e2a-fddeffc0be66" width="425" alt="image">
-
+</p>
 ##### 4.2.1.2 kNN
 
 Al observar los resultados obtenidos de Random Forest, como el MSE alto tanto en el conjunto de entrenamiento como en el de prueba (en particular, el MSE de prueba no mejora significativamente con el tamaño del conjunto de entrenamiento), es claro que el modelo no está capturando bien las relaciones subyacentes entre las características y la variable objetivo. A pesar de los esfuerzos por optimizar los hiperparámetros (a través de GridSearchCV), el modelo sigue mostrando un rendimiento limitado. Este comportamiento puede indicar que Random Forest no es adecuado para la naturaleza de los datos en cuestión, o que las características seleccionadas no son las más representativas. Se decide probar con el regresor kNN que es un modelo no paramétrico que no hace suposiciones sobre la forma de la relación entre las características y la variable objetivo. A diferencia de Random Forest, que intenta aprender patrones complejos mediante árboles de decisión, kNN utiliza una metodología simple basada en la proximidad de los puntos de datos, lo que puede ser útil cuando los datos tienen una estructura no tan compleja.
 
 Como kNN es menos exigente computacionalmente utilizamos las 1000 características más representativas por cada receta según kBest y se utiliza el total de todas las recetas. El siguiente gráfico muestra el comportamiento del Error Cuadrático Medio (MSE) en función del número de vecinos k en el algoritmo kNN. El MSE disminuye drásticamente cuando el número de vecinos (k) se incrementa desde valores bajos hasta un punto donde se estabiliza, lo que indica que kNN se vuelve más estable a medida que se promedia sobre más vecinos.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/1d4c4b54-b36d-4dcf-8529-781c23ac1082" width="418" alt="image">
+</p>
 
 Como un k muy alto puede llevar a subajuste (underfitting), ya que el modelo sería demasiado simple y no capturaría las relaciones locales de los datos.Se llega al compromiso de elegir como k óptimo=20, aunque se obtiene un peor resultado de MSE que con random Forest.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/c94aa9dc-95b7-4626-9035-9fc6bb225834" width="185" alt="image">
-
+</p>
 En la representación de valor real vs predicción se puede llegar a la misma conclusión que con random forest y los valores que mejor se predicen son el rating 3.5 y 4.
-
+<p align="center">
 <img src="https://github.com/user-attachments/assets/90a1c929-5b30-49e7-b33c-3a325460335c" width="374" alt="image" >
-
+</p>
 Sobre la curva de aprendizaje se pueden hacer comentarios interesantes:
 
 El puntaje del conjunto de entrenamiento que oscila alrededor de 0.3 indica que el modelo no logra ajustar completamente los datos de entrenamiento. Esto puede sugerir un subajuste (underfitting), donde el modelo no es lo suficientemente complejo para capturar las relaciones entre las características y la variable objetivo.
 Que el puntaje de prueba comience en -0.1 es preocupante porque sugiere que el modelo inicial tiene un rendimiento muy bajo, posiblemente peor que un modelo ingenuo.
-
+<p align="center">
 <img src="https://github.com/user-attachments/assets/ad86458d-3b22-4ec4-8347-edfbeb673ea5" width="385" alt="image" >
 
 <img width="443" alt="image" src="https://github.com/user-attachments/assets/e9452525-21b6-45a0-8a9b-c318ad52cfd2" />
-
+</p>
 #### 4.2.2 Word2vec
 
 ##### 4.2.2.1 Random Forest
