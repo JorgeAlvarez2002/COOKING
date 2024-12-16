@@ -1,7 +1,7 @@
 # Proyecto final
 
 ## 1. Análisis de las variables de entrada
-En primer lugar, se ha visualizado el formato de los datos proporcionados. Tal y como se indica en el guión del proyecto, se trata de un fichero JSON que consta de 20130 recetas. Para cada receta se proporcionan una serie de datos, así como se puede observar a continuación:
+En primer lugar, se ha visualizado el formato de los datos proporcionados. Tal y como se indica en el guión del proyecto, se trata de un fichero JSON que consta de 20,130 recetas. Para cada receta se proporcionan una serie de datos, así como se puede observar a continuación:
 
 <img src="https://github.com/user-attachments/assets/1b676459-8c64-48e4-b131-1eb032c5afed" alt="imagen" width="1000">
 
@@ -111,7 +111,7 @@ De esta forma, se obteniene una matriz que tiene la siguiente forma:
   <img src="https://github.com/user-attachments/assets/ae6c3924-0b98-4938-831a-19711aa8547d" alt="imagen" width="300">
 </p>
 
-Se puede observar que las dimesiones de la matriz son 20130x3924, correpondientes a las 20130 recetas y las 3924 palabras únicas que forman el vocabulario de las recetas. En la parte izquierda se muestran las "coordenadas" de cada palabra y a la derecha el peso TF-IDF asociado a esa palabra.
+Se puede observar que las dimesiones de la matriz son 20,130x3,924, correpondientes a las 20,130 recetas y las 3,924 palabras únicas que forman el vocabulario de las recetas. En la parte izquierda se muestran las "coordenadas" de cada palabra y a la derecha el peso TF-IDF asociado a esa palabra.
 
 
 ### 3.1. Word2Vec
