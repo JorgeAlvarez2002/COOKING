@@ -177,13 +177,15 @@ Aunque lo esperado sería que los resultados mejoraran respecto al caso TF-IDF i
 
 #### 4.1.3 Bert
 Por último, se obtienen los resultados correspondientes al entrenamiento y evaluación de embeddings extraídos con BERT. 
-Como era de esperar, dada la mayor complejidad de los embeddings, los resultados obtenidos de forma general son mejores que para los dos casos anteriores. En esta primera comparación, se observa que el "caso peor" y el "caso mejor" presentan valores similares, y únicamente un menor tamaño de batch y tasa de apredizaje mejoran los resultados ligeramente. 
+Como era de esperar, dada la mayor calidad y complejidad de los embeddings, los resultados obtenidos de forma general son mejores que para los dos casos anteriores. En esta primera comparación, se observa que el "caso peor" y el "caso mejor" presentan valores similares, y únicamente un menor tamaño de batch y tasa de apredizaje mejoran los resultados ligeramente. Esto es un indicador de la calidad de los embeddings de BERT, pues como se puede apreciar, el modelo no depende tanto de los hiperparámetros con los que se configure la red.
 
 <img src="https://github.com/user-attachments/assets/09853cc1-12ba-4100-b597-dcc63286f61a" alt="imagen" width="400">
 
-Por otro lado, de igual manera que para el resto de embeddings, el aumento del número de capas solo tiene efecto para el "caso peor".
+Por otro lado, de igual manera que para el resto de embeddings, el aumento del número de capas solo tiene efecto para el "caso peor", pues en el "caso mejor" ya se está aprovechando la información de los embeddings con la configuración optimizada de la red.
+
 <img src="https://github.com/user-attachments/assets/47e3c1bd-2ac3-4d44-b547-90cb85cdb3a9" alt="imagen" width="400">
 
+Por último, vemos que, aunque en menor medida que en el caso Word2Vec, los resultados empeoran al aumentar el número de épocas que se entrena la red neuronal. Esto ocurre debido al sobreajuste a los datos de entrenamiento provocado por el número elevado de épocas, igual que ocurría en el caso anterior.
 
 <img src="https://github.com/user-attachments/assets/e7dcceb1-f6f4-49d3-9809-325fddfcde79" alt="imagen" width="400">
 
