@@ -345,7 +345,9 @@ Al igual que antes se realiza un análisis de hiperparametros con GridSearch per
 </p>
 También se observa la mejoría que hay al aumentar el número de árboles de decisión pero la mejora no es sustancial y computacionalmente muy costoso.
 
-![image](https://github.com/user-attachments/assets/1d10508d-c1ee-4928-a0f5-a6f91d910e87)
+<p align="center">
+<img src="https://github.com/user-attachments/assets/1d10508d-c1ee-4928-a0f5-a6f91d910e87" width="425" alt="image" >
+</p>
 
 Por último se observa la Distribución de las predicciones vs. valores reales
 <p align="center">
@@ -356,7 +358,9 @@ Por último se observa la Distribución de las predicciones vs. valores reales
 
 En cuanto a los resultados para el regresor kNN utilizando como representación vectorial Word2Vec se observa una mejora en términos de MSE respecto al regresor kNN para la representación vectorial de TF-IDF.
 
+<p align="center">
 <img  src="https://github.com/user-attachments/assets/5c063163-c38d-499d-b703-f15dbb042f8f" width="427" alt="image">
+</p>
 
 Por hacer una comparativa con el mismo k que antes se imprimen los resultados para k=20:
 <p align="center">
@@ -383,9 +387,10 @@ Para BERT, tal y como se ha explicado, se trabajará con 10,000 recetas por un m
 
 ##### 4.2.3.1 Random Forest
 
-Al igual que se ha hecho antes se aplica random forest con 50 árboles de decisión para poder hacer un análisis inicial:
+Al igual que se ha hecho antes se aplica Random Forest con 50 árboles de decisión para poder hacer un análisis inicial:
+
 <p align="center">
-<img width="128" alt="image" src="https://github.com/user-attachments/assets/1117bf13-c6aa-4d79-87c3-df812d3f62ea" />
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/1117bf13-c6aa-4d79-87c3-df812d3f62ea" />
 </p>
 
 Los peores resultados de _Random Forest_ al aplicar directamente los embeddings de BERT en comparación con TF-IDF y Word2Vec pueden justificarse por varias razones técnicas y características propias de los embeddings de BERT:
@@ -393,7 +398,7 @@ Los peores resultados de _Random Forest_ al aplicar directamente los embeddings 
 **1-** Los embeddings de BERT tienen una dimensión fija alta (768 dimensiones), que es mucho mayor en comparación con las representaciones de TF-IDF o Word2Vec. Esta alta dimensionalidad puede generar ruido y dificultar que Random Forest capture patrones relevantes, ya que este modelo no maneja bien espacios de características muy grandes sin una reducción previa de dimensionalidad.Esta hipotesis se confirma si reducimos a 500 dimensiones con selectKbest donde se observa que el MSE mejora ligeramente:
 
 <p align="center">
-<img width="125" alt="image" src="https://github.com/user-attachments/assets/bf1a28cf-97be-410c-859b-949a3305fd1f" />
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/bf1a28cf-97be-410c-859b-949a3305fd1f" />
 </p>
 
 **2-** BERT embeddings capturan información contextual y compleja de las palabras en el texto. Estas representaciones son densas y altamente correlacionadas, lo cual no se adapta bien a los algoritmos de Random Forest.
