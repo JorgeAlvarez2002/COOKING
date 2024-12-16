@@ -463,7 +463,7 @@ Para comparar el impacto del uso de sinónimos en el modelo de _Random Forest_, 
 Se estudia en un inicio para random forest a partir de la representación vectorial de TF-IDF y se obtiene el siguiente resultado:
 
 <p align="center">
-<img width="160" alt="image" src="https://github.com/user-attachments/assets/fc3b6d45-d102-4304-a327-d2c199fb4c10" />
+<img width="250" alt="image" src="https://github.com/user-attachments/assets/fc3b6d45-d102-4304-a327-d2c199fb4c10" />
 </p>
 
 Se observa que los resultados en términos de MSE son prácticamente iguales que en el caso en el que no se usa la técnica de tesauros. Esto puede ser debido a que:
