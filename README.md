@@ -119,7 +119,6 @@ Se han realizado distintos análisis a partir de los embeddings extraídos con W
 Un tamaño de embedding de 100 es razonable y suficiente para el número de recetas que tenemos (20,130) debido a que con 20,130 recetas, un embedding de tamaño 100 representa 2013000 parámetros (si consideramos un modelo simple con una capa de entrada que procesa estos embeddings). Esto es manejable para entrenar modelos estándar como Random Forest o k-NN sin riesgo de sobreajuste. Además un embedding más grande de 300 o 768 como Bert podría ser innecesario y añadir ruido en lugar de mejorar la capacidad de generalización.
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/032a09d2-4327-4a58-8aeb-6f060b816f89" alt="imagen" width="700">
 <img src="https://github.com/user-attachments/assets/91fc2147-0450-4db8-8491-88c3c0067eba" alt="imagen" width="700">
 </p>
 
