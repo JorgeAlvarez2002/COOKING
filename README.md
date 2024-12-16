@@ -324,32 +324,32 @@ Que el puntaje de prueba comience en -0.1 es preocupante porque sugiere que el m
 Para los análisis se hará uso de un torch size de (20130,100) la dimensionalidad de 100 se justificó previamente pero dimensionalidad 100 permite un equilibrio entre eficiencia y rendimiento, además que para el número de recetas y longitud de las recetas una dimensionalidad de 100 es suficiente, se hará una prueba con 200 más adelante para confirmar esto.
 
 Resultado para 50 árboles de decisión:
-
+<p align="center">
 <img  src="https://github.com/user-attachments/assets/429f7d5d-d550-42a6-9458-8894a060d8f8" width="230" alt="image">
-
+</p>
 Con validación cruzada se confirma la consistencia de este resultado, MSE con validación cruzada: 1.4465
-
+<p align="center">
 <img src="https://github.com/user-attachments/assets/ded1321f-201c-4517-8464-25bbe80c3091" width="400" alt="image" >
 <img  src="https://github.com/user-attachments/assets/751c78fd-c00d-4941-a2f3-eac067fb3b63" width="400" alt="image">
-
+</p>
 Si se usa la representación vectorial con dimensionalidad 200 se obtiene el siguiente MSE:
-
+<p align="center">
 <img  src="https://github.com/user-attachments/assets/d89b08da-0a6c-47e2-b319-1db36f44ea9d" width="225" alt="image">
-
+</p>
 Por lo tanto, la mejora es infima y no justifica el hecho de duplicar la dimensionalidad. 
 
 Al igual que antes se realiza un análisis de hiperparametros con GridSearch pero fijando el dataset de entrenamiento a todo el conjunto ya que computacionalmente es viable y se obtienen los siguientes resultados como mejor modelo:
-
+<p align="center">
 <img  src="https://github.com/user-attachments/assets/3fd32550-6580-47a3-b868-069698dc42c8" width="534" alt="image">
-
+</p>
 También se observa la mejoría que hay al aumentar el número de árboles de decisión pero la mejora no es sustancial y computacionalmente muy costoso.
 
 ![image](https://github.com/user-attachments/assets/1d10508d-c1ee-4928-a0f5-a6f91d910e87)
 
 Por último se observa la Distribución de las predicciones vs. valores reales
-
+<p align="center">
 <img src="https://github.com/user-attachments/assets/2933fa04-3afd-42e4-a3e7-c7118dce09d4" width="425" alt="image" >
-
+</p>
 ##### 4.2.2.2 Regresor kNN
 
 En cuanto a los resultados para el regresor kNN utilizando como representación vectorial word2vec se observa una mejora en términos de MSE respecto al regresor kNN para la representación vectorial de TF-IDF.
@@ -357,20 +357,23 @@ En cuanto a los resultados para el regresor kNN utilizando como representación 
 <img  src="https://github.com/user-attachments/assets/5c063163-c38d-499d-b703-f15dbb042f8f" width="427" alt="image">
 
 Por hacer una comparativa con el mismo k que antes se imprimen los resultados para k=20:
-
-<img width="193" alt="image" src="https://github.com/user-attachments/assets/3c789214-b029-46a1-b222-e0d6c82fe026" />
-
+<p align="center">
+<img width="250" alt="image" src="https://github.com/user-attachments/assets/3c789214-b029-46a1-b222-e0d6c82fe026" />
+</p>
+<p align="center">
+  
 <img width="386" alt="image" src="https://github.com/user-attachments/assets/ccef2c5e-406b-4704-9ac2-6d00e586d5f5" />
 <img width="386" alt="image" src="https://github.com/user-attachments/assets/552f5e9a-da64-4954-94e3-8fe9f4d43343" />
 
+</p>
 Además para el regresor kNN se realiza un estudio de como afecta la reducción de dimensionalidad al MSE. En un primer barrido, se decide ir eliminando la dimensión i-ésima y viendo como afecta su elminación al modelo. Si para la retirada de alguna característica se observara una empeora significativa en terminos de MSE. Indica que ninguna característica individual tiene un gran impacto en el rendimiento del modelo.
-
+<p align="center">
 <img width="419" alt="image" src="https://github.com/user-attachments/assets/1b8dd871-4cfa-4a4c-b688-4846924fac89" />
-
+</p>
 En un siguiente análisis se estudia el impacto que tiene en el MSE la reducción de la dimensionalidad, de donde se observa un mínimo local para 20 dimensiones que se asocia a que al reducir las dimensiones, eliminamos ruido y características menos relevantes que podrían dificultar la identificación de patrones en el kNN. Esto permite que kNN funcione de manera más eficiente, ya que la distancia entre puntos es más fácil de calcular y más representativa. Al aumentar el número de dimensiones el MSE empeora inicialmente porque el modelo empieza a incluir características irrelevantes o ruidosas. A partir de 60 dimensiones el MSE vuelve a disminuir porque, al aumentar las dimensiones, el modelo empieza a recuperar características informativas y relevantes. Para 100 dimensiones, se alcanza el óptimo, lo que sugiere que a esta cantidad de características se logra capturar la información más importante de los datos sin saturar el modelo con ruido.
-
+<p align="center">
 <img width="424" alt="image" src="https://github.com/user-attachments/assets/7cf404a9-3ebb-4d4e-becd-893b23470963" />
-
+</p>
 #### 4.2.3 Bert
 
 Para Bert como se ha explicado se trabajará con 10000 recetas por un motivo principalmente computacional. El tamaño de la matriz de embeddings crece con el número de ejemplos, lo que impacta directamente en el consumo de memoria RAM y en el tiempo de entrenamiento del modelo. La dimensión de 768 viene de que la salida final de cada texto procesado proviene de la última capa oculta de la red, que tiene un tamaño fijo de 768 dimensiones para cada token en el caso de BERT-base.
