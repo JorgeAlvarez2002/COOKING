@@ -156,14 +156,14 @@ Por último, probamos a aumentar el número de épocas a 100 y 200 a partir de l
 
 #### 4.1.2 Word2vec
 
-![image](https://github.com/user-attachments/assets/a0d95d94-607a-4ad0-a0fc-376a480cfa5c)
-![image](https://github.com/user-attachments/assets/351e3d66-7a8e-4a97-bddc-02f0a3ab4e1f)
-![image](https://github.com/user-attachments/assets/e28919de-ceb4-4b89-bdd6-7594fb38976d)
-
+<img src="https://github.com/user-attachments/assets/a0d95d94-607a-4ad0-a0fc-376a480cfa5c" alt="imagen" width="400">
+<img src="https://github.com/user-attachments/assets/351e3d66-7a8e-4a97-bddc-02f0a3ab4e1f" alt="imagen" width="400">
+<img src="https://github.com/user-attachments/assets/e28919de-ceb4-4b89-bdd6-7594fb38976d" alt="imagen" width="400">
 
 #### 4.1.3 Bert
-
-
+<img src="https://github.com/user-attachments/assets/09853cc1-12ba-4100-b597-dcc63286f61a" alt="imagen" width="400">
+<img src="https://github.com/user-attachments/assets/47e3c1bd-2ac3-4d44-b547-90cb85cdb3a9" alt="imagen" width="400">
+<img src="https://github.com/user-attachments/assets/e7dcceb1-f6f4-49d3-9809-325fddfcde79" alt="imagen" width="400">
 
 
 ### 4.2. Técnicas de regresión de la librería Scikit-learn
