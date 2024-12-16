@@ -170,13 +170,21 @@ En cuanto al aumento del número de capas, como ya se venía adelantando, los va
 
 <img src="https://github.com/user-attachments/assets/351e3d66-7a8e-4a97-bddc-02f0a3ab4e1f" alt="imagen" width="400">
 
-Aunque lo esperado sería que los resultados mejoraran respecto al caso TF-IDF igual que ocurría en las dos comparaciones anteriores, en este caso resulta perjudicial el aumentar tanto el número de épocas en el entrenamiento de la red.
+Aunque lo esperado sería que los resultados mejoraran respecto al caso TF-IDF igual que ocurría en las dos comparaciones anteriores, en este caso resulta perjudicial el aumentar tanto el número de épocas en el entrenamiento de la red. A diferencia de TF-IDF, los embeddings Word2Vec contienen relaciones semánticas previamente aprendidas, por lo que entrenar el modelo durante demasiadas épocas provoca un sobreajuste que lleva a su vez a una disminución de la calidad de las predicciones.
 
-<img src="https://github.com/user-attachments/assets/e28919de-ceb4-4b89-bdd6-7594fb38976d" alt="imagen" width="400">
+<img src="https://github.com/user-attachments/assets/d4ae3373-5adc-4108-b525-375f291328b9" alt="imagen" width="400">
+
 
 #### 4.1.3 Bert
+Por último, se obtienen los resultados correspondientes al entrenamiento y evaluación de embeddings extraídos con BERT. 
+Como era de esperar, dada la mayor complejidad de los embeddings, los resultados obtenidos de forma general son mejores que para los dos casos anteriores. En esta primera comparación, se observa que el "caso peor" y el "caso mejor" presentan valores similares, y únicamente un menor tamaño de batch y tasa de apredizaje mejoran los resultados ligeramente. 
+
 <img src="https://github.com/user-attachments/assets/09853cc1-12ba-4100-b597-dcc63286f61a" alt="imagen" width="400">
+
+Por otro lado, de igual manera que para el resto de embeddings, el aumento del número de capas solo tiene efecto para el "caso peor".
 <img src="https://github.com/user-attachments/assets/47e3c1bd-2ac3-4d44-b547-90cb85cdb3a9" alt="imagen" width="400">
+
+
 <img src="https://github.com/user-attachments/assets/e7dcceb1-f6f4-49d3-9809-325fddfcde79" alt="imagen" width="400">
 
 
