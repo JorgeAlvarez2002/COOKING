@@ -147,24 +147,31 @@ Por otro lado, se ha aumentado en 2 el número de capas a partir de las configur
 Por último, probamos a aumentar el número de épocas a 100 y 200 a partir de la configuración "caso mejor", con el objetivo de comparar si esto mejora los resultados obtenidos a cambio de un mayor coste computacional.
 
 #### 4.1.1 TF-IDF
-Como se puede observar, los resultados mejoran con respecto al "caso peor" al aumentar el número de épocas y también al disminuir el tamaño de batch. También mejoran, aunque no de forma tan pronunciada, al establecer una tasa de aprendizaje menor. Si se mejoran los tres hiperparámetros a la vez ("caso mejor"), los resultados mejoran considerablemente respecto al resto de casos.
+Como se puede observar, los resultados mejoran con respecto al "caso peor" al aumentar el número de épocas y también al disminuir el tamaño de batch. También mejoran, aunque no de forma tan pronunciada, al establecer una tasa de aprendizaje menor. Si se mejoran los tres hiperparámetros a la vez ("caso mejor"), los resultados mejoran considerablemente respecto al resto de casos. 
+
 <img src="https://github.com/user-attachments/assets/b38bd058-88eb-4519-8a90-78c91f1ca27f" alt="imagen" width="400">
 
 Al aumentar el número de capas de la red neuronal, se observa una mejora al partir de la configuración correspondiente al "caso peor". Sin embargo, esto no es así si se parte de la configuración correspondiente al "caso mejor", pues, aunque ligeramente, los valores de MSE y R^2 empeoran, lo cual puede deberse a un sobreajuste de los datos.
+
 <img src="https://github.com/user-attachments/assets/b13d507b-e676-4e62-a44f-71e48d5b01be" alt="imagen" width="400">
 
 Por último, se observa que el aumento del número de épocas con las que se entrena la red es muy relevante. Tanto es así, que incluso se mejoran los resultados obtenidos en "caso mejor" al hacer uso de 200 capas. Con esto se llega a la conclusión de que, para este problema en particular, un gran número de iteraciones en el entrenamiento de la red es un aspecto muy importante para obtener unos resultados óptimos.
-<img src="https://github.com/user-attachments/assets/bf7e7faf-eec8-426b-994b-a8bbef46669b" alt="imagen" width="400">
+
+<img src="https://github.com/user-attachments/assets/252af8e8-c081-464a-a369-4dc943b2f7a4" alt="imagen" width="400">
+
 
 
 #### 4.1.2 Word2vec
-A continuación se repite el análisis anterior, esta vez para los embeddings extraídos con el algoritmo Word2Vec. En esta primera comparación se observa que la mejora que se produce en los resultados al aumentar el número de épocas y disminuir la tasa de aprendizaje es bastante mayor que en el caso anterior. En consecuencia, también mejoran los resultados para el "caso mejor", que esta vez son ligeramente peores que los obtenidos al reducir la tasa de aprendizaje.
+A continuación se repite el análisis anterior, esta vez para los embeddings extraídos con el algoritmo Word2Vec. En esta primera comparación se observa que la mejora que se produce en los resultados al aumentar el número de épocas y disminuir la tasa de aprendizaje es bastante mayor que en el caso anterior. En consecuencia, también mejoran los resultados para el "caso mejor", que esta vez son ligeramente peores que los obtenidos al reducir la tasa de aprendizaje. Esto puede deberse a la naturaleza de los embeddings, pues el ajuste que permite una tasa de aprendizaje baja puede ser beneficiosa por aprovechar mejor las relaciones semánticas que representan. Sin embargo, esto puede provocar que al aumentar el número de épocas se produzca un cierto sobreajuste, empeorando las tasas de error.
+
 <img src="https://github.com/user-attachments/assets/a0d95d94-607a-4ad0-a0fc-376a480cfa5c" alt="imagen" width="400">
 
-En cuanto al aumento del número de capas, como ya se venía adelantando, los valores de MSE y R^2 son mejores de forma global. Aún así, siguen teniendo el mismo comportamiento que en el caso TF-IDF: aumentar dos capas el número de capas de la red supone una mejora considerable para el "caso peor", sin embargo, con respecto al "caso mejor" se mantiene constante la tasa de error.
+En cuanto al aumento del número de capas, como ya se venía adelantando, los valores de MSE y R^2 son mejores de forma global. Esto puede explicarse de nuevo con el formato de los embeddings extraídos con Word2Vec, los cuales permiten un apredizaje más profundo, beneficiándose por tanto de redes con un mayor número de capas. Aún así, siguen teniendo el mismo comportamiento que en el caso TF-IDF: aumentar dos capas el número de capas de la red supone una mejora considerable para el "caso peor", sin embargo, con respecto al "caso mejor" se mantiene constante la tasa de error.
+
 <img src="https://github.com/user-attachments/assets/351e3d66-7a8e-4a97-bddc-02f0a3ab4e1f" alt="imagen" width="400">
 
 Aunque lo esperado sería que los resultados mejoraran respecto al caso TF-IDF igual que ocurría en las dos comparaciones anteriores, en este caso resulta perjudicial el aumentar tanto el número de épocas en el entrenamiento de la red.
+
 <img src="https://github.com/user-attachments/assets/e28919de-ceb4-4b89-bdd6-7594fb38976d" alt="imagen" width="400">
 
 #### 4.1.3 Bert
