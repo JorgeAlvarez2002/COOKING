@@ -489,13 +489,18 @@ Para la tarea de resumen, se ha configurado el modelo con los siguientes paráme
 3. do_sample=False: Se desactiva la opción de muestreo para que el modelo genere siempre el resumen más probable, en lugar de generar múltiples resúmenes con mayor variabilidad.
 
 Se aplicó el modelo de resumen sobre la columna _'directions'_ del conjunto de datos de recetas. Para cada receta, el modelo generó un resumen de las instrucciones, proporcionando una versión más breve pero coherente de los pasos a seguir. Se incluyen los siguientes ejemplos:
-
+<p align="center">
 <img width="290" alt="image" src="https://github.com/user-attachments/assets/ae858e91-b422-4f76-954b-9664dd1a5cd4" />
-
+</p>
+<p align="center">
 <img width="293" alt="image" src="https://github.com/user-attachments/assets/137c4f32-ba01-4311-935c-ae89331a42e4" />
+</p>
+<p align="center">
 <img width="266" alt="image" src="https://github.com/user-attachments/assets/856461b7-67e1-4b8b-8c74-5e50a7227ac2" />
-
+</p>
+<p align="center">
 <img width="271" alt="image" src="https://github.com/user-attachments/assets/71b4d9ca-cea6-49a5-8097-3f6dccdc3e03" />
+</p>
 
 
 
