@@ -398,6 +398,15 @@ Los peores resultados de Random Forest al aplicar directamente los embeddings de
 
 ## 5. Comparación de lo obtenido con el _fine-tuning_ de un modelo preentrenado con _Hugging Face_
 
+En este último punto se procede a comparar los resultados obtenidos en el punto 3 con el fine-tuning de un modelo preentrenado con _Hugging Face_.
+Para ello, implementamos un pipeline de aprendizaje profundo que combina el modelo preentrenado DistilBERT con una regresión lineal para predecir los _ratings_ basándose en la variable _directions_.
+
+Se ha intentado implementar para la totalidad de los datos pero ha sido muy difícil, por lo que se ha implementado para un máximo de 10000 recetas. Además, se ha observado que a medida que se aumentaba el número de recetas procesadas, la tasa de error se incrementaba. 
+
+Al comenzar el proyecto, en el punto 1, ya se adelantaba la poca correlación que hay entre las variables de salida y las de entrada, lo que complica la obtención de buenos resultados. Además, los extensos tiempos de ejecución han complicado la tarea debido a las limitaciones del propio Google Collab. Para intentar mitigar esto último, se cambió del modelo BERT al modelo DistilBERT, el cual es una versión reducida del primero: es más ligero y ocupa menos memoria. De esta forma, se ha probado con distinta cantidad de recetas:
+
+<img width="125" alt="image" src="https://github.com/user-attachments/assets/413e8ba7-3992-476d-9fbb-08a2acebf15e"/>
+
 
 ## 6. Extensión
 
