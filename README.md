@@ -114,7 +114,7 @@ De esta forma, se obteniene una matriz que tiene la siguiente forma:
 Se puede observar que las dimesiones de la matriz son 20,130x3,924, correpondientes a las 20,130 recetas y las 3,924 palabras únicas que forman el vocabulario de las recetas. En la parte izquierda se muestran las "coordenadas" de cada palabra y a la derecha el peso TF-IDF asociado a esa palabra.
 
 
-### 3.1. Word2Vec
+### 3.2. Word2Vec
 Se han realizado distintos análisis a partir de los embeddings extraídos con Word2Vec. En primer lugar, se ha realizado una reducción de la dimensionalidad de los datos.
 Un tamaño de embedding de 100 es razonable y suficiente para el número de recetas que tenemos (20,130) debido a que con 20,130 recetas, un _embedding_ de tamaño 100 representa 2,013,000 parámetros (si consideramos un modelo simple con una capa de entrada que procesa estos _embeddings_). Esto es manejable para entrenar modelos estándar como Random Forest o k-NN sin riesgo de sobreajuste. Además un _embedding_ más grande de 300 o 768 como Bert podría ser innecesario y añadir ruido en lugar de mejorar la capacidad de generalización.
 
@@ -136,12 +136,12 @@ Por último, se ha calculado la similitud coseno entre recetas a partir de los _
 <img src="https://github.com/user-attachments/assets/44627365-4ea8-46f4-9184-be13ca234709" alt="imagen" width="800">
 </p>
 
-### 3.1. Embeddings contextuales: BERT
-En este proyecto, se utiliza BERT (Bidirectional Encoder Representations from Transformers) para generar embeddings contextuales de texto a partir del campo directions de nuestras recetas. La idea principal es capturar el contexto semántico de las palabras en cada receta, proporcionando una representación rica y contextualizada para usarse como entrada en modelos de aprendizaje automático para predecir el rating.
+### 3.3. _Embeddings_ contextuales: BERT
+En este proyecto, se utiliza BERT (_Bidirectional Encoder Representations from Transformers_) para generar _embeddings_ contextuales de texto a partir de la variable _directions_ de nuestras recetas. La idea principal es capturar el contexto semántico de las palabras en cada receta, proporcionando una representación rica y contextualizada para usarse como entrada en modelos de aprendizaje automático para predecir el _rating_.
 
-Se utilizó el modelo preentrenado bert-base-uncased, que ha sido entrenado con un corpus de 2.500 millones de palabras provenientes de Wikipedia y Google Books. Este modelo genera embeddings con un tamaño fijo de 768 dimensiones para cada entrada, lo que corresponde al tamaño del último estado oculto del token [CLS]. Este token es especialmente relevante porque captura la información semántica de toda la secuencia.
+Se utilizó el modelo preentrenado _bert-base-uncased_, que ha sido entrenado con un corpus de 2,500 millones de palabras provenientes de Wikipedia y Google Books. Este modelo genera _embeddings_ con un tamaño fijo de 768 dimensiones para cada entrada, lo que corresponde al tamaño del último estado oculto del token [CLS]. Este token es especialmente relevante porque captura la información semántica de toda la secuencia.
 
-Dado que el procesamiento con BERT es computacionalmente intensivo y nuestro dataset contiene 20,130 recetas, se decidió reducir el tamaño del dataset a 10,000 muestras seleccionadas aleatoriamente. Esto permitió trabajar con un volumen de datos manejable dentro de las restricciones de memoria y tiempo.
+Dado que el procesamiento con BERT es computacionalmente intensivo y nuestro _dataset_ contiene 20,130 recetas, se decidió reducir el tamaño del dataset a 10,000 muestras seleccionadas aleatoriamente. Esto permitió trabajar con un volumen de datos manejable dentro de las restricciones de memoria y tiempo.
 
 Para cada texto, se aplicó una tokenización con un límite máximo de 512 tokens, ya que esta es la longitud máxima permitida por el modelo BERT. Si una receta supera este límite, el texto se trunca para ajustarse. Este recorte es razonable porque las instrucciones de las recetas suelen ser más cortas que este límite.
 
