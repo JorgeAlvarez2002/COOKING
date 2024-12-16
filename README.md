@@ -355,7 +355,7 @@ Los peores resultados de Random Forest al aplicar directamente los embeddings de
 
 ## 6.1 Técnicas de NLP
 
-El análisis de bigramas es una técnica importante para capturar relaciones entre palabras consecutivas en un texto, que puede ser útil para mejorar el rendimiento de los modelos de aprendizaje automático al incluir información contextual.
+El análisis de bigramas es una técnica importante para capturar relaciones entre palabras consecutivas en un texto, que puede ser útil para mejorar el rendimiento de los modelos de aprendizaje automático al incluir información contextual. Esta parte de la extensión se incluye en "EXTENSIÓN A.ipynb"
 
 La simple tokenización de palabras individuales no captura relaciones entre términos consecutivos que pueden ser importantes para entender el significado del texto. Antes de extraer bigramas, las direcciones de las recetas (clean_directions) fueron limpiadas y preprocesadas para eliminar caracteres no deseados y normalizar el texto.
 
@@ -404,6 +404,24 @@ Se aplica representación vectorial al regresor kNN donde si que se observa una 
 <img width="482" alt="image" src="https://github.com/user-attachments/assets/761a84ca-4c64-452c-bbaf-b36ffaf33243" />
 
 ## 6.2 Summarizer
+
+se ha utilizado un modelo preentrenado de Hugging Face en "EXTENSIÓN B.ipynb" para realizar el resumen automático de las direcciones de las recetas. El modelo seleccionado es el Google Pegasus XSum, que está diseñado específicamente para tareas de resumen de textos. El pipeline de Hugging Face se utiliza para integrar el modelo en el flujo de trabajo.
+
+Para la tarea de resumen, se ha configurado el modelo con los siguientes parámetros:
+
+1. max_length: 50 tokens. Este parámetro limita la longitud máxima del resumen generado, asegurando que los resúmenes sean lo suficientemente concisos.
+2. min_length: 5 tokens. Establece la longitud mínima del resumen, evitando que el modelo genere resúmenes extremadamente cortos o vacíos.
+3. do_sample=False: Se desactiva la opción de muestreo para que el modelo genere siempre el resumen más probable, en lugar de generar múltiples resúmenes con mayor variabilidad.
+
+Se aplicó el modelo de resumen sobre la columna 'directions' del conjunto de datos de recetas. Para cada receta, el modelo generó un resumen de las instrucciones, proporcionando una versión más breve pero coherente de los pasos a seguir. Se incluyen los siguientes ejemplos:
+
+<img width="290" alt="image" src="https://github.com/user-attachments/assets/ae858e91-b422-4f76-954b-9664dd1a5cd4" />
+
+<img width="293" alt="image" src="https://github.com/user-attachments/assets/137c4f32-ba01-4311-935c-ae89331a42e4" />
+<img width="266" alt="image" src="https://github.com/user-attachments/assets/856461b7-67e1-4b8b-8c74-5e50a7227ac2" />
+
+<img width="271" alt="image" src="https://github.com/user-attachments/assets/71b4d9ca-cea6-49a5-8097-3f6dccdc3e03" />
+
 
 
 
