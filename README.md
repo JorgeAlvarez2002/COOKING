@@ -133,13 +133,27 @@ Para verificar la calidad y las propiedades de los embeddings generados por BERT
 <img width="305" alt="image" src="https://github.com/user-attachments/assets/0cc92551-1ea5-4884-a0de-d29ab97a2a0b" />
 
 ## 4. Entrenamiento y evaluación
+EXPLICAR MSE Y R^2
 A continuación se van a entrenar y evaluar modelos de regresión utilizando distintas estrategias de aprendizaje automático.
 
 ### 4.1. Redes neuronales con PyTorch
 En este apartado se van a entrenar y evaluar distintas configuraciones de red reuronal, en las que variarán distintos hiperparámetros como el número de épocas, la tamaño de batch y la tasa de aprendizaje. También se mostrará el efecto en los resultados de aumentar el número de capas de la red.
 Se han realizado las siguientes comparaciones:
 
-- 
+- "Caso peor": se configura un número de épocas bajo (_epochs = 5_), un tamaño de batch grande (_batch_size = 128_) y una tasa de aprendizaje elevada (_lr = 0.1_).
+- "Aumentamos el nº de épocas": se configura un mayor número de épocas (_epochs = 20_) y el tamaño de batch y la tasa de aprendizaje se dejan como en el "caso peor".
+- "Disminuimos el tamaño de batch": se configura un menor tamaño de batch (_batch_size = 32_) y el número de épocas y la tasa de aprendizaje se dejan como en el "caso peor".
+- "Disminuimos la tasa de apredizaje": se configura una menor tasa de aprendizaje (_lr = 0.001_) y el número de épocas y el tamaño de batch se dejan como en el "caso peor".
+- "Caso mejor": se configura un número de épocas alto (_epochs = 20_), un tamaño de batch pequeño (_batch_size = 32_) y una tasa de aprendizaje pequeña (_lr = 0.1_).
+
+Por otro lado, se ha aumentado en 2 el número de capas a partir de las configuraciones de "caso peor" y "caso mejor".
+
+Por último, probamos a aumentar el número de épocas a 100 y 200, con el objetivo de comparar si esto mejora los resultados obtenidos a cambio de un mayor coste computacional.
+
+#### 4.1.1 TF-IDF
+
+![image](https://github.com/user-attachments/assets/45221fe6-261b-40e1-9b9f-af8c29786e16)
+
 
 #### 4.1.1 TF-IDF
 
