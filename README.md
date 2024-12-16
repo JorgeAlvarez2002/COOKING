@@ -124,17 +124,20 @@ Un tamaño de embedding de 100 es razonable y suficiente para el número de rece
 <img src="https://github.com/user-attachments/assets/91fc2147-0450-4db8-8491-88c3c0067eba" alt="imagen" width="700">
 </p>
 
-Podemos observar que los términos que son similares en contexto entre sí presentan una distancia espacial entre ellos menor. EXTENDER UN POCO.
+Este comportamiento es una manifestación visual del éxito de Word2Vec en capturar relaciones semánticas y contextuales entre palabras. Gracias a la reducción de dimensionalidad con PCA, es posible observar que las palabras con significados similares o que aparecen en contextos similares en los textos están representadas por vectores más cercanos entre sí, lo que refuerza la idea de que Word2Vec ha logrado aprender una representación significativa del lenguaje
 
 Por otro lado y siguiendo con la característica observada anteriormente, buscamos palabras que sean similares a un término específico. Por ejemplo, para el término _bake_ obtenemos lo siguiente:
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/4e4e0ae5-826d-4734-8b0a-e693755d931b" alt="imagen" width="200">
+</p>
 
 Por último, se ha calculado la similitud coseno entre recetas a partir de los _embeddings_ extraídos. Esto se ha realizado para las 10 primeras recetas, comparándolas de 2 en 2 (la primera con la segunda, la tercera con la cuarta...):
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/80080646-f6d1-4e31-8026-d1aa9a36f9ca" alt="imagen" width="800">
 <img src="https://github.com/user-attachments/assets/44627365-4ea8-46f4-9184-be13ca234709" alt="imagen" width="800">
-
+</p>
 
 ### 3.1. Embeddings contextuales: BERT
 En este proyecto, se utiliza BERT (Bidirectional Encoder Representations from Transformers) para generar embeddings contextuales de texto a partir del campo directions de nuestras recetas. La idea principal es capturar el contexto semántico de las palabras en cada receta, proporcionando una representación rica y contextualizada para usarse como entrada en modelos de aprendizaje automático para predecir el rating.
@@ -147,7 +150,9 @@ Para cada texto, se aplicó una tokenización con un límite máximo de 512 toke
 
 Para verificar la calidad y las propiedades de los embeddings generados por BERT, graficamos la distribución de valores para un token específico. Esto nos permite observar cómo se estructuran los valores en el espacio latente de 768 dimensiones.
 
+<p align="center">
 <img width="305" alt="image" src="https://github.com/user-attachments/assets/0cc92551-1ea5-4884-a0de-d29ab97a2a0b" />
+</p>
 
 ## 4. Entrenamiento y evaluación
 A continuación se van a entrenar y evaluar modelos de regresión utilizando distintas estrategias de aprendizaje automático.
@@ -171,22 +176,26 @@ Por último, probamos a aumentar el número de épocas a 100 y 200 a partir de l
 #### 4.1.1 TF-IDF
 Como se puede observar, los resultados mejoran con respecto al "caso peor" al aumentar el número de épocas y también al disminuir el tamaño de batch. También mejoran, aunque no de forma tan pronunciada, al establecer una tasa de aprendizaje menor. Si se mejoran los tres hiperparámetros a la vez ("caso mejor"), los resultados mejoran considerablemente respecto al resto de casos. 
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/b38bd058-88eb-4519-8a90-78c91f1ca27f" alt="imagen" width="400">
+</p>
 
 Al aumentar el número de capas de la red neuronal, se observa una mejora al partir de la configuración correspondiente al "caso peor". Sin embargo, esto no es así si se parte de la configuración correspondiente al "caso mejor", pues, aunque ligeramente, los valores de MSE y R^2 empeoran, lo cual puede deberse a un sobreajuste de los datos.
-
+<p align="center">
 <img src="https://github.com/user-attachments/assets/b13d507b-e676-4e62-a44f-71e48d5b01be" alt="imagen" width="400">
-
+</p>
 Por último, se observa que el aumento del número de épocas con las que se entrena la red es muy relevante. Tanto es así, que incluso se mejoran los resultados obtenidos en "caso mejor" al hacer uso de 200 capas. Con esto se llega a la conclusión de que, para este problema en particular, un gran número de iteraciones en el entrenamiento de la red es un aspecto muy importante para obtener unos resultados óptimos.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/252af8e8-c081-464a-a369-4dc943b2f7a4" alt="imagen" width="400">
-
-
+</p>
 
 #### 4.1.2 Word2vec
 A continuación se repite el análisis anterior, esta vez para los embeddings extraídos con el algoritmo Word2Vec. En esta primera comparación se observa que la mejora que se produce en los resultados al aumentar el número de épocas y disminuir la tasa de aprendizaje es bastante mayor que en el caso anterior. En consecuencia, también mejoran los resultados para el "caso mejor", que esta vez son ligeramente peores que los obtenidos al reducir la tasa de aprendizaje. Esto puede deberse a la naturaleza de los embeddings, pues el ajuste que permite una tasa de aprendizaje baja puede ser beneficiosa por aprovechar mejor las relaciones semánticas que representan. Sin embargo, esto puede provocar que al aumentar el número de épocas se produzca un cierto sobreajuste, empeorando las tasas de error.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/a0d95d94-607a-4ad0-a0fc-376a480cfa5c" alt="imagen" width="400">
+</p>
 
 En cuanto al aumento del número de capas, como ya se venía adelantando, los valores de MSE y R^2 son mejores de forma global. Esto puede explicarse de nuevo con el formato de los embeddings extraídos con Word2Vec, los cuales permiten un apredizaje más profundo, beneficiándose por tanto de redes con un mayor número de capas. Aún así, siguen teniendo el mismo comportamiento que en el caso TF-IDF: aumentar dos capas el número de capas de la red supone una mejora considerable para el "caso peor", sin embargo, con respecto al "caso mejor" se mantiene constante la tasa de error.
 
@@ -194,23 +203,29 @@ En cuanto al aumento del número de capas, como ya se venía adelantando, los va
 
 Aunque lo esperado sería que los resultados mejoraran respecto al caso TF-IDF igual que ocurría en las dos comparaciones anteriores, en este caso resulta perjudicial el aumentar tanto el número de épocas en el entrenamiento de la red. A diferencia de TF-IDF, los embeddings Word2Vec contienen relaciones semánticas previamente aprendidas, por lo que entrenar el modelo durante demasiadas épocas provoca un sobreajuste que lleva a su vez a una disminución de la calidad de las predicciones.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/d4ae3373-5adc-4108-b525-375f291328b9" alt="imagen" width="400">
-
+</p>
 
 #### 4.1.3 Bert
 Por último, se obtienen los resultados correspondientes al entrenamiento y evaluación de embeddings extraídos con BERT. 
 Como era de esperar, dada la mayor calidad y complejidad de los embeddings, los resultados obtenidos de forma general son mejores que para los dos casos anteriores. En esta primera comparación, se observa que el "caso peor" y el "caso mejor" presentan valores similares, y únicamente un menor tamaño de batch y tasa de apredizaje mejoran los resultados ligeramente. Esto es un indicador de la calidad de los embeddings de BERT, pues como se puede apreciar, el modelo no depende tanto de los hiperparámetros con los que se configure la red.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/09853cc1-12ba-4100-b597-dcc63286f61a" alt="imagen" width="400">
+</p>
 
 Por otro lado, de igual manera que para el resto de embeddings, el aumento del número de capas solo tiene efecto para el "caso peor", pues en el "caso mejor" ya se está aprovechando la información de los embeddings con la configuración optimizada de la red.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/47e3c1bd-2ac3-4d44-b547-90cb85cdb3a9" alt="imagen" width="400">
+</p>
 
 Por último, vemos que, aunque en menor medida que en el caso Word2Vec, los resultados empeoran al aumentar el número de épocas que se entrena la red neuronal. Esto ocurre debido al sobreajuste a los datos de entrenamiento provocado por el número elevado de épocas, igual que ocurría en el caso anterior.
 
+<p align="center">
 <img src="https://github.com/user-attachments/assets/e7dcceb1-f6f4-49d3-9809-325fddfcde79" alt="imagen" width="400">
-
+</p>
 
 ### 4.2. Técnicas de regresión de la librería Scikit-learn
 En este punto del proyecto, nos enfocamos en el entrenamiento y evaluación de modelos de regresión utilizando las representaciones vectoriales previamente comentadas. Los modelos seleccionados para esta tarea son Random Forest y k-Nearest Neighbors (kNN), los cuales serán evaluados sobre tres tipos de representaciones vectoriales de los documentos: TF-IDF, Word2Vec y BERT.
