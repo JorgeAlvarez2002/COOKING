@@ -411,8 +411,9 @@ Se ha intentado implementar para la totalidad de los datos pero ha sido muy dif�
 
 Al comenzar el proyecto, en el punto 1, ya se adelantaba la poca correlación que hay entre las variables de salida y las de entrada, lo que complica la obtención de buenos resultados. Además, los extensos tiempos de ejecución han complicado la tarea debido a las limitaciones del propio Google Collab. Para intentar mitigar esto último, se cambió del modelo BERT al modelo DistilBERT, el cual es una versión reducida del primero: es más ligero y ocupa menos memoria. De esta forma, se ha probado con distinta cantidad de recetas:
 
+<p align="center">
 <img width="400" alt="image" src="https://github.com/user-attachments/assets/413e8ba7-3992-476d-9fbb-08a2acebf15e"/>
-
+</p>
 
 ## 6. Extensión
 
@@ -426,8 +427,8 @@ La simple tokenización de palabras individuales no captura relaciones entre té
 
 ### 6.1.1 Bigramas
 
-1.   Rango de N-gramas: Se seleccionaron únicamente bigramas (ngram_range=(2, 2)).
-2.   Frecuencia mínima y máxima: Para evitar características poco informativas:
+1.   _Rango de N-gramas_: Se seleccionaron únicamente bigramas (ngram_range=(2, 2)).
+2.   _Frecuencia mínima y máxima_: Para evitar características poco informativas:
 Se descartaron bigramas que aparecían en menos de 2 recetas (min_df=2).
 Se eliminaron bigramas que estaban presentes en más del 95% de las recetas (max_df=0.95).
 
