@@ -90,7 +90,7 @@ Con la homogenización se busca que todas las palabras con significados equivale
 </p>
 
 ### 2.4. Limpieza
-Por último, se procede a la eliminación de aquellas palabras que son muy comunes en el lenguaje y que por lo tanto no tienen un contenido semántico relevante.
+Por último, se procede a la eliminación de aquellas palabras que son muy comunes en el lenguaje y que por lo tanto no tienen un contenido semántico relevante, como _"this"_ o _"the"_.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/aed6f406-5057-4940-aaa1-002a5692d2fe" alt="imagen" width="400">
