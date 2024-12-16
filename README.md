@@ -148,14 +148,16 @@ Se han realizado las siguientes comparaciones:
 
 Por otro lado, se ha aumentado en 2 el número de capas a partir de las configuraciones de "caso peor" y "caso mejor".
 
-Por último, probamos a aumentar el número de épocas a 100 y 200, con el objetivo de comparar si esto mejora los resultados obtenidos a cambio de un mayor coste computacional.
+Por último, probamos a aumentar el número de épocas a 100 y 200 a partir de la configuración "caso mejor", con el objetivo de comparar si esto mejora los resultados obtenidos a cambio de un mayor coste computacional.
+
+#### 4.1.1 TF-IDF
+![image](https://github.com/user-attachments/assets/21c9caf3-bb21-482a-8e19-bac638f4703a)
+
+![image](https://github.com/user-attachments/assets/b4556677-6c9b-42d6-955b-ac35dd719e21)
+
 
 #### 4.1.1 TF-IDF
 
-![image](https://github.com/user-attachments/assets/45221fe6-261b-40e1-9b9f-af8c29786e16)
-
-
-#### 4.1.1 TF-IDF
 
 #### 4.2.2 Word2vec
 
